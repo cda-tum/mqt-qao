@@ -37,6 +37,7 @@ BUILD_REQUIREMENTS = [
     "pandas>=2.1",
     "qubovert>=1.0",
     "pandas>=1.3",
+]
 
 if os.environ.get("CI", None):
     nox.options.error_on_missing_interpreters = True
