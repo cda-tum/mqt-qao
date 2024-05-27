@@ -920,7 +920,7 @@ class Binary(Variable):
 
 
 class Discrete(Variable):
-    """child class of discrete variables"""
+    """child class of discrete variables """
 
     def create(self, name: str, values: list[float]) -> Symbol:
         """function for creating the new discrete variable.
