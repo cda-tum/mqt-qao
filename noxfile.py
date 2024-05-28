@@ -34,6 +34,7 @@ BUILD_REQUIREMENTS = [
     "pandas==2.1",
     "qubovert==1.0",
     "pytest==7.4.0",
+    "tomli==2.0.1",
 ]
 
 if os.environ.get("CI", None):
