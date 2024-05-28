@@ -32,7 +32,7 @@ class ObjectiveFunction:
         """
         if not minimization:
             objective_function = -objective_function
-        self.objective_functions.append((cast(Expr, expand(objective_function).evalf()), weight))  # type: ignore[no-untyped-call]
+        self.objective_functions.append((cast(Expr, expand(objective_function).evalf()), weight))
 
     def rewrite_cost_functions(self, pubo: PUBO, var: Variables) -> PUBO | bool:
         """function for rewriting the cost functions according with the variable structure
@@ -167,22 +167,22 @@ class ObjectiveFunction:
             for var in solution:
                 if var in variables.variables_dict:
                     if isinstance(solution[var], float):
-                        temp_expression = temp_expression.subs({variables.variables_dict[var].symbol: solution[var]})  # type: ignore[no-untyped-call]
+                        temp_expression = temp_expression.subs({variables.variables_dict[var].symbol: solution[var]})
                     elif isinstance(solution[var], list):
                         for i in range(len(solution[var])):
                             if isinstance(solution[var][i], list):
                                 for j in range(len(solution[var][i])):
                                     if isinstance(solution[var][i][j], list):
                                         for k in range(len(solution[var][i][j])):
-                                            temp_expression = temp_expression.subs(  # type: ignore[no-untyped-call]
+                                            temp_expression = temp_expression.subs(
                                                 {variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][k]}
                                             )
                                     else:
-                                        temp_expression = temp_expression.subs(  # type: ignore[no-untyped-call]
+                                        temp_expression = temp_expression.subs(
                                             {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
                                         )
                             else:
-                                temp_expression = temp_expression.subs(  # type: ignore[no-untyped-call]
+                                temp_expression = temp_expression.subs(
                                     {variables.variables_dict[var][i].symbol: solution[var][i]}
                                 )
             try:

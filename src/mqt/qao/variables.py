@@ -669,7 +669,7 @@ class Variable:
             i += 1
 
         # Add the needed constraint
-        constraints.append((format(expand(var_sum).evalf()) + " = 1", True, False, False))  # type: ignore[no-untyped-call]
+        constraints.append((format(expand(var_sum).evalf()) + " = 1", True, False, False))
         return binary_variables_name_weight, constraints, i
 
     def _unitary_encoding(

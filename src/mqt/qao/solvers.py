@@ -1208,7 +1208,7 @@ class Solution:
                 plt.close()
         else:
             if show:
-                plt.show()
+                plt.show()  # type: ignore[no-untyped-call]
 
     def valid_solutions(self, weak: bool = True) -> float:
         """function for evaluating the rate of valid solution and the amount of violations
