@@ -35,6 +35,7 @@ BUILD_REQUIREMENTS = [
     "dwave-system>=1.20",
     "pandas>=2.1",
     "qubovert>=1.0",
+    "pytest>=7.4.0",
 ]
 
 if os.environ.get("CI", None):
