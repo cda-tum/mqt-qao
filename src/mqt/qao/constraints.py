@@ -7,7 +7,7 @@ from qubovert import PUBO, boolean_var
 # for managing symbols
 from sympy import Expr, expand
 
-from mqt.qao.variables import Variables
+from .variables import Variables
 
 
 class Constraints:

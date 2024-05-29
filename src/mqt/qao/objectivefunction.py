@@ -8,7 +8,7 @@ from sympy import Expr, expand
 if TYPE_CHECKING:
     from qubovert import PUBO
 
-    from mqt.qao.variables import Variables
+    from .variables import Variables
 
 
 class ObjectiveFunction:

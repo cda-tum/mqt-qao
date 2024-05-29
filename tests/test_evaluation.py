@@ -17,26 +17,6 @@ from mqt.qao.problem import Problem
 from mqt.qao.solvers import Solution, Solver
 from mqt.qao.variables import Variables
 
-# from dwave.cloud import Client
-
-
-def test_example() -> None:
-    """Expected type of final code:
-    Problem = Problem
-    variables = Problem.variables.add_....._variables(.....)
-    def f(var):
-       ....
-    Problem.objective_function.add_objective_function(f(var))
-    Problem.constraints.add_constraints(....)
-    # With an eventual option for saving more information (Problem final size, etc.)
-    decoded_best_solution, Energy = Problem.solve()
-    # And eventually for knowing something about resolution statistics
-    Problem.statistics()
-
-    """
-    Variables()
-    assert 1 == 1
-
 
 def test_binary_only() -> None:
     """Test only the construction of binary variables"""

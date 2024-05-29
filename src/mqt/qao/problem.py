@@ -7,7 +7,9 @@ import math
 import numpy as np
 from qubovert import PUBO
 
-from mqt.qao import Constraints, ObjectiveFunction, Variables
+from .constraints import Constraints
+from .objectivefunction import ObjectiveFunction
+from .variables import Variables
 
 
 class Problem:

@@ -14,12 +14,12 @@ from docplex.mp.model import Model
 from dwave.samplers import SimulatedAnnealingSampler
 from dwave.system import DWaveSampler, EmbeddingComposite
 from matplotlib import rc
-from qiskit.algorithms import QAOA, VQE
 from qiskit.circuit import Parameter, QuantumCircuit
 from qiskit.circuit.library import TwoLocal
 from qiskit.exceptions import QiskitError
-from qiskit.providers.basicaer import BasicAer
-from qiskit_ibm_runtime import QiskitRuntimeService  # type: ignore[import-untyped]
+from qiskit_aer.backends import AerSimulator
+from qiskit_algorithms import QAOA, VQE
+from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit_optimization.algorithms import (
     GroverOptimizer,
     MinimumEigenOptimizationResult,
@@ -33,16 +33,12 @@ if TYPE_CHECKING:
     from collections.abc import Callable
 
     from dimod import SampleSet
-    from qiskit.algorithms.optimizers import Optimizer
-    from qiskit.opflow import (
-        ExpectationBase,
-        GradientBase,
-        OperatorBase,
-    )
+    from qiskit_algorithms.optimizers import Optimizer
+    from qiskit_algorithms.gradients import BaseEstimatorGradient
     from qiskit_optimization.problems import QuadraticProgram
 
 
-from mqt.qao.problem import Problem
+from .problem import Problem
 
 
 class Solver:
@@ -461,14 +457,14 @@ class Solver:
                 backend = QiskitRuntimeService().backend(backend_name)
             except QiskitError:
                 print("The chosen simulator doesn't exist or the IBM cannot be used. Qasm simulator will used.")
-                backend = BasicAer.get_backend("qasm_simulator")
+                backend = AerSimulator()
         else:
             try:
                 QiskitRuntimeService.save_account(channel=channel, token=token, instance=instance, overwrite=True)
                 backend = QiskitRuntimeService().backend(backend_name)
             except QiskitError:
                 print("The chosen backend doesn't exist or the IBM cannot be used. Qasm simulator will used.")
-                backend = BasicAer.get_backend("qasm_simulator")
+                backend = AerSimulator()
         grover_optimizer = GroverOptimizer(qubit_values, num_iterations=threshold, quantum_instance=backend)
 
         if save_time:
@@ -627,14 +623,14 @@ class Solver:
                 backend = QiskitRuntimeService().backend(backend_name)
             except QiskitError:
                 print("The chosen backend doesn't exist or the IBM cannot be used. Qasm simulator will used.")
-                backend = BasicAer.get_backend("qasm_simulator")
+                backend = AerSimulator()
         else:
             try:
                 QiskitRuntimeService.save_account(channel=channel, token=token, instance=instance, overwrite=True)
                 backend = QiskitRuntimeService().backend(backend_name)
             except QiskitError:
                 print("The chosen backend doesn't exist or the IBM cannot be used. Qasm simulator will used.")
-                backend = BasicAer.get_backend("qasm_simulator")
+                backend = AerSimulator()
         qaoa_mes = QAOA(
             quantum_instance=backend,
             optimizer=optimizer,
@@ -723,7 +719,7 @@ class Solver:
         optimizer: Optimizer | None = None,
         ansatz: QuantumCircuit | OperatorBase | None = None,
         initial_point: np.ndarray[Any, Any] | None = None,
-        gradient: GradientBase | Callable[[np.ndarray[Any, Any] | list[Any]], list[Any]] | None = None,
+        gradient: BaseEstimatorGradient | Callable[[np.ndarray[Any, Any] | list[Any]], list[Any]] | None = None,
         expectation: ExpectationBase | None = None,
         include_custom: bool = False,
         max_evals_grouped: int = 1,
@@ -779,14 +775,14 @@ class Solver:
                 backend = QiskitRuntimeService().backend(backend_name)
             except QiskitError:
                 print("The chosen backend doesn't exist or the IBM cannot be used. Qasm simulator will used.")
-                backend = BasicAer.get_backend("qasm_simulator")
+                backend = AerSimulator()
         else:
             try:
                 QiskitRuntimeService.save_account(channel=channel, token=token, instance=instance, overwrite=True)
                 backend = QiskitRuntimeService().backend(backend_name)
             except QiskitError:
                 print("The chosen backend doesn't exist or the IBM cannot be used. Qasm simulator will used.")
-                backend = BasicAer.get_backend("qasm_simulator")
+                backend = AerSimulator()
         vqe_mes = VQE(
             quantum_instance=backend,
             optimizer=optimizer,
@@ -1000,7 +996,7 @@ class Solution:
                 self.energies.append(sample[1] + offset)
         self.best_energy = samples.first.energy + offset
 
-        for sample in list(samples.samples()):  # type: ignore[no-untyped-call]
+        for sample in list(samples.samples()):
             converted_sol = self.problem.variables.convert_simulated_annealing_solution(pubo.convert_solution(sample))
             if isinstance(converted_sol, dict):
                 self.solutions.append(converted_sol)
@@ -1176,7 +1172,7 @@ class Solution:
                 plt.savefig(filename + ".pdf", format="pdf")
                 plt.close()
         elif show:
-            plt.show()  # type: ignore[no-untyped-call]
+            plt.show()
 
     def valid_solutions(self, weak: bool = True) -> float:
         """function for evaluating the rate of valid solution and the amount of violations
