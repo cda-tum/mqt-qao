@@ -33,8 +33,8 @@ if TYPE_CHECKING:
     from collections.abc import Callable
 
     from dimod import SampleSet
-    from qiskit_algorithms.optimizers import Optimizer
     from qiskit_algorithms.gradients import BaseEstimatorGradient
+    from qiskit_algorithms.optimizers import Optimizer
     from qiskit_optimization.problems import QuadraticProgram
 
 
