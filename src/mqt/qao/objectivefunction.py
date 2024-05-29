@@ -53,7 +53,7 @@ class ObjectiveFunction:
             func = 0.0
             sign = "+"
             for field in fields:
-                if field != "+" and field != "-":
+                if field not in {"+", "-"}:
                     poly_fields = field.split("*")
                     to_add = 1.0
                     for poly_field in poly_fields:
@@ -91,7 +91,7 @@ class ObjectiveFunction:
                                             elif len(elem) == 3:
                                                 t = t * elem[1] + elem[2]
                                             temp += t
-                                    temp = temp**power
+                                    temp **= power
                             elif isinstance(var.binary_variables_name_weight[key], tuple):
                                 t = 1.0
                                 t *= var.binary_variables_name_weight[key][0]
@@ -174,17 +174,17 @@ class ObjectiveFunction:
                                 for j in range(len(solution[var][i])):
                                     if isinstance(solution[var][i][j], list):
                                         for k in range(len(solution[var][i][j])):
-                                            temp_expression = temp_expression.subs(
-                                                {variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][k]}
-                                            )
+                                            temp_expression = temp_expression.subs({
+                                                variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][k]
+                                            })
                                     else:
-                                        temp_expression = temp_expression.subs(
-                                            {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                        )
+                                        temp_expression = temp_expression.subs({
+                                            variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                        })
                             else:
-                                temp_expression = temp_expression.subs(
-                                    {variables.variables_dict[var][i].symbol: solution[var][i]}
-                                )
+                                temp_expression = temp_expression.subs({
+                                    variables.variables_dict[var][i].symbol: solution[var][i]
+                                })
             try:
                 objective_functions_values[str(obj[0])] = float(temp_expression)
             except ValueError:
