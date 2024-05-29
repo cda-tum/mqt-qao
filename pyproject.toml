@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "setuptools>=61",
+    "setuptools>=66.1",
     "setuptools_scm>=7",
 ]
 build-backend = "setuptools.build_meta"
@@ -15,7 +15,7 @@ authors = [
 ]
 keywords = ["MQT",  "quantum computing", "optimization", "QUBO"]
 license = { file = "LICENSE" }
-requires-python = ">=3.10,<3.12"
+requires-python = ">=3.8"
 dynamic = ["version"]
 
 dependencies = [
@@ -46,8 +46,11 @@ classifiers = [
     "Operating System :: MacOS",
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Intended Audience :: Science/Research",
     "Natural Language :: English",
     "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
@@ -130,15 +133,15 @@ precision = 1
 
 
 [tool.mypy]
-mypy_path = "$MYPY_CONFIG_FILE_DIR/src"
 files = ["src", "tests"]
-python_version = "3.11"
-strict = true
+mypy_path = ["$MYPY_CONFIG_FILE_DIR/src"]
+python_version = "3.8"
+warn_unused_configs = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
-warn_unreachable = true
+strict = true
+disallow_untyped_defs = false
 explicit_package_bases = true
-no_implicit_reexport = true
-pretty = true
+warn_unreachable = true
 
 
 [[tool.mypy.overrides]]
