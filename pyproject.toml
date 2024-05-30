@@ -25,7 +25,6 @@ dependencies = [
     "pandas>=2.1.2",
     "numpy>=1.26",
     "qubovert>=1.2.5",
-    "qiskit_ibm_runtime>=0.21",
     "matplotlib>=3.8",
     "docplex>=2.21.207",
     "dwave-system>=1.21.0",

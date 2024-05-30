@@ -2163,7 +2163,8 @@ class Constraints:
             ret = binary_variables_name_weight[key][0]
         return ret
 
-    def _min_max_const_estimation(self, exp: PUBO) -> tuple[float, float, float]:
+    @staticmethod
+    def _min_max_const_estimation(exp: PUBO) -> tuple[float, float, float]:
         """function for estimating minimum and maximum value and the constraint value
 
         Keyword arguments:
@@ -2186,7 +2187,8 @@ class Constraints:
                 min_val += exp[key]
         return min_val, max_val, const
 
-    def _expression_to_hamiltonian(self, exp: Expr, binary_variables_name_weight_val: list[Any]) -> PUBO:
+    @staticmethod
+    def _expression_to_hamiltonian(exp: Expr, binary_variables_name_weight_val: list[Any]) -> PUBO:
         """function for translating an expression in the problem variable into an Hamiltonian when is directly written with the inside binary variables
 
         Keyword arguments:
