@@ -18,6 +18,7 @@ from qiskit.circuit import Parameter, QuantumCircuit
 from qiskit.circuit.library import TwoLocal
 from qiskit.primitives import Sampler
 from qiskit_algorithms import QAOA, SamplingVQE
+from qiskit_algorithms.optimizers import COBYLA
 from qiskit_optimization.algorithms import (
     GroverOptimizer,
     MinimumEigenOptimizer,
@@ -523,7 +524,7 @@ class Solver:
         problem: Problem,
         auto_setting: bool = False,
         num_runs: int = 10,
-        optimizer: Optimizer = None,
+        optimizer: Optimizer = COBYLA(),
         reps: int = 1,
         initial_state: QuantumCircuit | None = None,
         mixer: QuantumCircuit = None,
@@ -663,7 +664,7 @@ class Solver:
         problem: Problem,
         auto_setting: bool = False,
         num_runs: int = 10,
-        optimizer: Optimizer | None = None,
+        optimizer: Optimizer = COBYLA(),
         ansatz: QuantumCircuit | None = None,
         initial_point: np.ndarray[Any, Any] | None = None,
         aggregation: float | Callable[[list[float]], float] | None = None,
@@ -710,7 +711,7 @@ class Solver:
             compilation_time = -1
         logging.getLogger("qiskit").setLevel(logging.ERROR)
         res = []
-        if auto_setting and ansatz is None:
+        if auto_setting or ansatz is None:
             ansatz = TwoLocal(num_qubits=len(self.qubo.variables), rotation_blocks="ry", entanglement_blocks="cz")
 
         vqe_mes = SamplingVQE(

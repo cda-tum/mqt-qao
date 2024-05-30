@@ -1485,6 +1485,7 @@ def test_gas_solver_basic() -> None:
     solution = solver.solve_grover_adaptive_search_qubo(problem, qubit_values=6, num_runs=10)
     if isinstance(solution, Solution):
         all_satisfy, _each_satisfy = solution.check_constraint_optimal_solution()
+        print(solution.best_solution)
         assert solution.best_solution == {"a": 1.0, "b": 0.0, "c": 1.0}
         print(solution.best_solution)
         assert solution.best_energy < -5.9  # (the range if for having no issues with numerical errors)

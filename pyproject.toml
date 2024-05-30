@@ -80,6 +80,7 @@ Research = "https://www.cda.cit.tum.de/research/quantum/"
 [tool.pytest.ini_options]
 minversion = "7.2"
 testpaths = ["tests"]
+pythonpath = ["src"]
 addopts = ["-ra", "--strict-markers", "--strict-config", "--showlocals"]
 log_cli_level = "info"
 xfail_strict = true
