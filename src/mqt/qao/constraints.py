@@ -2140,7 +2140,8 @@ class Constraints:
                 sign = field
         return func, min_precision
 
-    def _convert_expression_logic(self, expr: Expr, binary_variables_name_weight: dict[str, Any]) -> boolean_var | bool:
+    @staticmethod
+    def _convert_expression_logic(expr: Expr, binary_variables_name_weight: dict[str, Any]) -> boolean_var | bool:
         """function for translating an expression in the problem variable in case of logic constraints
 
         Keyword arguments:
@@ -2188,7 +2189,52 @@ class Constraints:
         return min_val, max_val, const
 
     @staticmethod
-    def _expression_to_hamiltonian(exp: Expr, binary_variables_name_weight_val: list[Any]) -> PUBO:
+    def _expression_to_hamiltonian_power(
+        powers: list[str], binary_variables_name_weight_val: list[Any], to_add: float
+    ) -> float | bool:
+        try:
+            power = int(powers[1])
+        except TypeError:
+            print("Expression not supported\n")
+            return False
+        key = powers[0]
+        for elm in binary_variables_name_weight_val:
+            if isinstance(elm, list):
+                for el in elm:
+                    if not isinstance(el, str) and key == (next(iter(el[0].variables))):
+                        to_add *= el[0] ** power
+                        break
+            elif not isinstance(elm, str) and key == next(iter(elm[0].variables)):
+                to_add *= elm[0] ** power
+                break
+        return to_add
+
+    @staticmethod
+    def _expression_to_hamiltonian_no_power(
+        poly_field: str, binary_variables_name_weight_val: list[Any], to_add: float
+    ) -> float:
+        key = poly_field
+        is_float = False
+        try:
+            temp = float(key)
+        except ValueError:
+            pass
+        else:
+            to_add *= temp
+            is_float = True
+
+        if not is_float:
+            for elm in binary_variables_name_weight_val:
+                if isinstance(elm, list):
+                    for el in elm:
+                        if not isinstance(el, str) and key == next(iter(el[0].variables)):
+                            to_add *= el[0]
+                elif not isinstance(elm, str) and key == next(iter(elm[0].variables)):
+                    to_add *= elm[0]
+
+        return to_add
+
+    def _expression_to_hamiltonian(self, exp: Expr, binary_variables_name_weight_val: list[Any]) -> PUBO:
         """function for translating an expression in the problem variable into an Hamiltonian when is directly written with the inside binary variables
 
         Keyword arguments:
@@ -2208,40 +2254,14 @@ class Constraints:
                 for poly_field in poly_fields:
                     powers = poly_field.split("^")
                     if len(powers) == 2:
-                        try:
-                            power = int(powers[1])
-                        except TypeError:
-                            print("Expression not supported\n")
-                            return False
-                        key = powers[0]
-                        for elm in binary_variables_name_weight_val:
-                            if isinstance(elm, list):
-                                for el in elm:
-                                    if not isinstance(el, str) and key == (next(iter(el[0].variables))):
-                                        to_add *= el[0] ** power
-                                        break
-                            elif not isinstance(elm, str) and key == next(iter(elm[0].variables)):
-                                to_add *= elm[0] ** power
-                                break
+                        t = self._expression_to_hamiltonian_power(powers, binary_variables_name_weight_val, to_add)
+                        if not isinstance(t, bool):
+                            to_add = t
                     else:
-                        key = poly_field
-                        is_float = False
-                        try:
-                            temp = float(key)
-                        except ValueError:
-                            pass
-                        else:
-                            to_add *= temp
-                            is_float = True
+                        to_add = self._expression_to_hamiltonian_no_power(
+                            poly_field, binary_variables_name_weight_val, to_add
+                        )
 
-                        if not is_float:
-                            for elm in binary_variables_name_weight_val:
-                                if isinstance(elm, list):
-                                    for el in elm:
-                                        if not isinstance(el, str) and key == next(iter(el[0].variables)):
-                                            to_add *= el[0]
-                                elif not isinstance(elm, str) and key == next(iter(elm[0].variables)):
-                                    to_add *= elm[0]
                 if sign == "+":
                     hamiltonian += to_add
                 else:
