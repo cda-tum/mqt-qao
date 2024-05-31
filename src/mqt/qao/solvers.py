@@ -524,7 +524,7 @@ class Solver:
         problem: Problem,
         auto_setting: bool = False,
         num_runs: int = 10,
-        optimizer: Optimizer = COBYLA(),
+        optimizer: Optimizer | None = None,
         reps: int = 1,
         initial_state: QuantumCircuit | None = None,
         mixer: QuantumCircuit = None,
@@ -587,6 +587,9 @@ class Solver:
             initial_state = QuantumCircuit(var_num)
             for _idx in range(var_num):
                 initial_state.h(_idx)
+
+        if optimizer is None:
+            optimizer = COBYLA()
         qaoa_mes = QAOA(
             sampler=Sampler(),
             optimizer=optimizer,
@@ -664,7 +667,7 @@ class Solver:
         problem: Problem,
         auto_setting: bool = False,
         num_runs: int = 10,
-        optimizer: Optimizer = COBYLA(),
+        optimizer: Optimizer | None = None,
         ansatz: QuantumCircuit | None = None,
         initial_point: np.ndarray[Any, Any] | None = None,
         aggregation: float | Callable[[list[float]], float] | None = None,
@@ -713,6 +716,9 @@ class Solver:
         res = []
         if auto_setting or ansatz is None:
             ansatz = TwoLocal(num_qubits=len(self.qubo.variables), rotation_blocks="ry", entanglement_blocks="cz")
+
+        if optimizer is None:
+            optimizer = COBYLA()
 
         vqe_mes = SamplingVQE(
             sampler=Sampler(),
@@ -786,7 +792,8 @@ class Solver:
     def get_lambda_updates(self) -> int:
         return self._number_of_lambda_update
 
-    def _from_qubovert_to_qiskit_model(self, qubo: QUBO) -> QuadraticProgram:
+    @staticmethod
+    def _from_qubovert_to_qiskit_model(qubo: QUBO) -> QuadraticProgram:
         """function for converting the qubovert formulation into the qiskit quadratic model one
 
         Keyword arguments:

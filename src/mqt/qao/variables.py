@@ -437,6 +437,102 @@ class Variables:
 
         return constraints, i
 
+    def conv_var(self, v1: Variable, solution: dict[str, float]) -> float | bool:
+        temp = 0.0
+        if isinstance(self.binary_variables_name_weight[v1.name], list):
+            for el in self.binary_variables_name_weight[v1.name]:
+                if not isinstance(el, str):
+                    key = next(iter(el[0].variables))
+                    if key not in solution:
+                        print("The variable is not found\n")
+                        return False
+                    if solution[key] == 1:
+                        temp += el[1] if len(el) > 1 else 1
+                    if len(el) == 3:
+                        temp += el[2]
+        elif next(iter(self.binary_variables_name_weight[v1.name][0].variables)) in solution:
+            key = next(iter(self.binary_variables_name_weight[v1.name][0].variables))
+            if solution[key] == 1:
+                temp += (
+                    self.binary_variables_name_weight[v1.name][1]
+                    if len(self.binary_variables_name_weight[v1.name]) > 1
+                    else 1
+                )
+            if len(self.binary_variables_name_weight[v1.name]) == 3:
+                temp += self.binary_variables_name_weight[v1.name][2]
+        else:
+            print("The variable is not found\n")
+            return False
+
+        return temp
+
+    def conv_list(self, v1: list[Variable], solution: dict[str, float]) -> list[float] | bool:
+        nested_temp_list = []
+        for v2 in v1:
+            if not isinstance(v2, list) and v2.name in self.binary_variables_name_weight:
+                temp = self.conv_var(v2, solution)
+                if isinstance(temp, bool):
+                    return False
+                nested_temp_list.append(temp)
+        return nested_temp_list
+
+    def convert_solution_var(
+        self, converted_solution: dict[str, Any], var: str, solution: dict[str, float]
+    ) -> dict[str, Any] | bool:
+        """function for converting a solution coming from simulated annealing"""
+        converted_solution[var] = []
+        for j, v in enumerate(self.variables_dict[var]):
+            if isinstance(v, list):
+                converted_solution[var].append([])
+                for v1 in v:
+                    if not isinstance(v1, list) and v1.name in self.binary_variables_name_weight:
+                        temp = self.conv_var(v1, solution)
+                        if isinstance(temp, bool):
+                            return False
+                        converted_solution[var][j].append(temp)
+                    elif isinstance(v1, list):
+                        nested_temp_list = self.conv_list(v1, solution)
+                        if isinstance(nested_temp_list, bool):
+                            return False
+                        converted_solution[var][j].append(nested_temp_list)
+            elif v.name in self.binary_variables_name_weight:
+                temp = self.conv_var(v, solution)
+                if isinstance(temp, bool):
+                    return False
+                converted_solution[var].append(temp)
+        return converted_solution
+
+    def converted_solution_single_var(
+        self, converted_solution: dict[str, Any], var: str, solution: dict[str, float]
+    ) -> dict[str, Any] | bool:
+        converted_solution[var] = 0.0
+        if var not in self.binary_variables_name_weight:
+            print("The variable is not found\n")
+            return False
+        if isinstance(self.binary_variables_name_weight[var], list):
+            for el in self.binary_variables_name_weight[var]:
+                if not isinstance(el, str):
+                    key = next(iter(el[0].variables))
+                    if key not in solution:
+                        print("The variable is not found\n")
+                        return False
+                    if solution[key] == 1:
+                        converted_solution[var] += el[1] if len(el) > 1 else 1
+                    if len(el) == 3:
+                        converted_solution[var] += el[2]
+        elif next(iter(self.binary_variables_name_weight[var][0].variables)) in solution:
+            key = next(iter(self.binary_variables_name_weight[var][0].variables))
+            if solution[key] == 1:
+                converted_solution[var] += (
+                    self.binary_variables_name_weight[var][1] if len(self.binary_variables_name_weight[var]) > 1 else 1
+                )
+            if len(self.binary_variables_name_weight[var]) == 3:
+                converted_solution[var] += self.binary_variables_name_weight[var][2]
+        else:
+            print("The variable is not found\n")
+            return False
+        return converted_solution
+
     def convert_simulated_annealing_solution(self, solution: dict[str, float]) -> dict[str, Any] | bool:
         """function for converting a solution coming from simulated annealing
 
@@ -449,172 +545,16 @@ class Variables:
         """
         converted_solution: dict[str, Any] = {}
         for var in self.variables_dict:
-            if isinstance(self.variables_dict[var], Variable):
-                converted_solution[var] = 0.0
-                if var in self.binary_variables_name_weight:
-                    if isinstance(self.binary_variables_name_weight[var], list):
-                        for el in self.binary_variables_name_weight[var]:
-                            if (
-                                not isinstance(el, str)
-                                and next(iter(el[0].variables)) in solution
-                                and solution[next(iter(el[0].variables))] == 1
-                            ):
-                                if len(el) > 1:
-                                    converted_solution[var] += el[1]
-                                else:
-                                    converted_solution[var] += 1
-                            if not isinstance(el, str) and next(iter(el[0].variables)) in solution and len(el) == 3:
-                                converted_solution[var] += el[2]
-                            if not isinstance(el, str) and next(iter(el[0].variables)) not in solution:
-                                print("The variable is not found\n")
-                                return False
-                    else:
-                        if (
-                            next(iter(self.binary_variables_name_weight[var][0].variables)) in solution
-                            and solution[next(iter(self.binary_variables_name_weight[var][0].variables))] == 1
-                        ):
-                            if len(self.binary_variables_name_weight[var]) > 1:
-                                converted_solution[var] += self.binary_variables_name_weight[var][1]
-                            else:
-                                converted_solution[var] += 1
-
-                        if (
-                            next(iter(self.binary_variables_name_weight[var][0].variables)) in solution
-                            and len(self.binary_variables_name_weight[var]) == 3
-                        ):
-                            converted_solution[var] += self.binary_variables_name_weight[var][2]
-                        if next(iter(self.binary_variables_name_weight[var][0].variables)) not in solution:
-                            print("The variable is not found\n")
-                            return False
-
-                else:
-                    print("The variable is not found\n")
+            if not isinstance(self.variables_dict[var], Variable):
+                temp = self.convert_solution_var(converted_solution, var, solution)
+                if isinstance(temp, bool):
                     return False
+                converted_solution = temp
             else:
-                converted_solution[var] = []
-                j = 0
-                for v in self.variables_dict[var]:
-                    if not isinstance(v, list) and v.name in self.binary_variables_name_weight:
-                        temp = 0.0
-                        if isinstance(self.binary_variables_name_weight[v.name], list):
-                            for el in self.binary_variables_name_weight[v.name]:
-                                if not isinstance(el, str):
-                                    if (
-                                        next(iter(el[0].variables)) in solution
-                                        and solution[next(iter(el[0].variables))] == 1
-                                    ):
-                                        if len(el) > 1:
-                                            temp += el[1]
-                                        else:
-                                            temp += 1
-                                    if next(iter(el[0].variables)) in solution and len(el) == 3:
-                                        temp += el[2]
-                                    if next(iter(el[0].variables)) not in solution:
-                                        print("The variable is not found\n")
-                                        return False
-                        elif next(iter(self.binary_variables_name_weight[v.name][0].variables)) in solution:
-                            if (
-                                solution[next(iter(self.binary_variables_name_weight[v.name][0].variables))] == 1
-                            ) and len(self.binary_variables_name_weight[v.name]) > 1:
-                                temp += self.binary_variables_name_weight[v.name][1]
-                            if (
-                                solution[next(iter(self.binary_variables_name_weight[v.name][0].variables))] == 1
-                            ) and len(self.binary_variables_name_weight[v.name]) == 1:
-                                temp += 1
-                            if len(self.binary_variables_name_weight[v.name]) == 3:
-                                temp += self.binary_variables_name_weight[v.name][2]
-                        else:
-                            print("The variable is not found\n")
-                            return False
-                        converted_solution[var].append(temp)
-                    elif isinstance(v, list):
-                        converted_solution[var].append([])
-                        k = 0
-                        for v1 in v:
-                            if not isinstance(v1, list):
-                                if v1.name in self.binary_variables_name_weight:
-                                    temp = 0.0
-                                    if isinstance(self.binary_variables_name_weight[v1.name], list):
-                                        for el in self.binary_variables_name_weight[v1.name]:
-                                            if not isinstance(el, str):
-                                                if (
-                                                    next(iter(el[0].variables)) in solution
-                                                    and solution[next(iter(el[0].variables))] == 1
-                                                ):
-                                                    if len(el) > 1:
-                                                        temp += el[1]
-                                                    else:
-                                                        temp += 1
-                                                if next(iter(el[0].variables)) in solution and len(el) == 3:
-                                                    temp += el[2]
-                                                if next(iter(el[0].variables)) not in solution:
-                                                    print("The variable is not found\n")
-                                                    return False
-                                    elif (
-                                        next(iter(self.binary_variables_name_weight[v1.name][0].variables)) in solution
-                                    ):
-                                        if (
-                                            solution[
-                                                next(iter(self.binary_variables_name_weight[v1.name][0].variables))
-                                            ]
-                                            == 1
-                                        ) and len(self.binary_variables_name_weight[v1.name]) > 0:
-                                            if len(self.binary_variables_name_weight[v1.name]) > 1:
-                                                temp += self.binary_variables_name_weight[v1.name][1]
-                                            else:
-                                                temp += 1
-                                        if len(self.binary_variables_name_weight[v1.name]) == 3:
-                                            temp += self.binary_variables_name_weight[v1.name][2]
-                                    else:
-                                        print("The variable is not found\n")
-                                        return False
-
-                                    converted_solution[var][j].append(temp)
-                            else:
-                                converted_solution[var][j].append([])
-                                for v2 in v:
-                                    if not isinstance(v2, list) and v2.name in self.binary_variables_name_weight:
-                                        temp = 0.0
-                                        if isinstance(self.binary_variables_name_weight[v2.name], list):
-                                            for el in self.binary_variables_name_weight[v2.name]:
-                                                if (
-                                                    not isinstance(el, str)
-                                                    and next(iter(el[0].variables)) in solution
-                                                    and solution[next(iter(el[0].variables))] == 1
-                                                ):
-                                                    if len(el) > 1:
-                                                        temp += el[1]
-                                                    else:
-                                                        temp += 1
-                                                if (
-                                                    not isinstance(el, str)
-                                                    and next(iter(el[0].variables)) in solution
-                                                    and len(el) == 3
-                                                ):
-                                                    temp += el[2]
-                                                if next(iter(el[0].variables)) not in solution:
-                                                    print("The variable is not found\n")
-                                                    return False
-                                        elif (
-                                            next(iter(self.binary_variables_name_weight[v2.name][0].variables))
-                                            in solution
-                                        ):
-                                            if (
-                                                solution[
-                                                    next(iter(self.binary_variables_name_weight[v2.name][0].variables))
-                                                ]
-                                                == 1
-                                            ) and len(self.binary_variables_name_weight[v2.name]) > 1:
-                                                temp += self.binary_variables_name_weight[v2.name][1]
-                                            if len(self.binary_variables_name_weight[v2.name]) == 3:
-                                                temp += self.binary_variables_name_weight[v2.name][2]
-                                        else:
-                                            print("The variable is not found\n")
-                                            return False
-                                        converted_solution[var][j][k].append(temp)
-                            k += 1
-                    j += 1
-
+                temp = self.converted_solution_single_var(converted_solution, var, solution)
+                if isinstance(temp, bool):
+                    return False
+                converted_solution = temp
         return converted_solution
 
 
