@@ -105,7 +105,7 @@ class CDAStyle(UnsrtStyle):
     """Custom style for including PDF links."""
 
     @staticmethod
-    def format_url( _e: Entry) -> HRef:
+    def format_url(_e: Entry) -> HRef:
         """Format URL field as a link to the PDF."""
         url = field("url", raw=True)
         return href()[url, "[PDF]"]
