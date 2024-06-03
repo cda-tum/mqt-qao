@@ -2,7 +2,9 @@
 requires = [
     "setuptools>=66.1",
     "setuptools_scm>=8.1",
+    "wheel",
     "cython",
+    "rectangle-packer==2.0.2"
 ]
 build-backend = "setuptools.build_meta"
 
