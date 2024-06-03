@@ -1083,9 +1083,7 @@ class Solution:
             plt.ylabel(r"\textit{occurrence}", fontsize=20)
         else:
             if label:
-                plt.hist(
-                    self.energies, cumulative=True, histtype="step", linewidth=2, bins=100, label=label
-                )
+                plt.hist(self.energies, cumulative=True, histtype="step", linewidth=2, bins=100, label=label)
             else:
                 plt.hist(self.energies, cumulative=True, histtype="step", linewidth=2, bins=100)
             plt.title("Cumulative distribution", fontsize=20)
