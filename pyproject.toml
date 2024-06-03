@@ -2,6 +2,7 @@
 requires = [
     "setuptools>=66.1",
     "setuptools_scm>=8.1",
+    "cython",
 ]
 build-backend = "setuptools.build_meta"
 
