@@ -9,13 +9,13 @@ from mqt.qao.problem import Problem
 from mqt.qao.solvers import Solution, Solver
 
 __all__ = [
-    "Variable",
-    "Variables",
     "Constraints",
     "ObjectiveFunction",
     "Problem",
     "Solution",
     "Solver",
+    "Variable",
+    "Variables",
 ]
 
 logger = logging.getLogger("mqt-qao")

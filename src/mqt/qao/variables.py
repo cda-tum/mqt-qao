@@ -3,7 +3,7 @@
 # numpy for matrix management
 from __future__ import annotations
 
-from math import ceil, floor, log, sqrt
+from math import ceil, floor, log, sqrt, log2
 from typing import Any
 
 import numpy as np
@@ -699,9 +699,11 @@ class Variable:
         binary_variables_name_weight[self.name].append("unitary")
         for w in range(1, samples + 1):
             if w == 1:
-                binary_variables_name_weight[self.name].append(
-                    (boolean_var(letter + format(i)), w * unitary_weight, min_val)
-                )
+                binary_variables_name_weight[self.name].append((
+                    boolean_var(letter + format(i)),
+                    w * unitary_weight,
+                    min_val,
+                ))
             else:
                 binary_variables_name_weight[self.name].append((boolean_var(letter + format(i)), w * unitary_weight))
             i += 1
@@ -737,9 +739,11 @@ class Variable:
         binary_variables_name_weight[self.name].append("domain well")
         for w in range(1, samples + 1):
             if w == 1:
-                binary_variables_name_weight[self.name].append(
-                    (boolean_var(letter + format(i)), w * unitary_weight, min_val)
-                )
+                binary_variables_name_weight[self.name].append((
+                    boolean_var(letter + format(i)),
+                    w * unitary_weight,
+                    min_val,
+                ))
             else:
                 binary_variables_name_weight[self.name].append((boolean_var(letter + format(i)), w * unitary_weight))
                 constraints.append((letter + format(i) + ">=" + letter + format(i - 1), True, False, False))
@@ -820,9 +824,11 @@ class Variable:
         binary_variables_name_weight[self.name].append("arithmetic progression")
         for w in range(1, samples):
             if w == 1:
-                binary_variables_name_weight[self.name].append(
-                    (boolean_var(letter + format(i)), w * unitary_weight, min_val)
-                )
+                binary_variables_name_weight[self.name].append((
+                    boolean_var(letter + format(i)),
+                    w * unitary_weight,
+                    min_val,
+                ))
             else:
                 binary_variables_name_weight[self.name].append((boolean_var(letter + format(i)), w * unitary_weight))
             i += 1
@@ -875,9 +881,11 @@ class Variable:
             eta = floor(v / ux)
             binary_variables_name_weight[self.name] = []
             binary_variables_name_weight[self.name].append("bounded coefficient")
-            binary_variables_name_weight[self.name].append(
-                (boolean_var(letter + format(i)), base**lower_power, min_val)
-            )
+            binary_variables_name_weight[self.name].append((
+                boolean_var(letter + format(i)),
+                base**lower_power,
+                min_val,
+            ))
             i += 1
 
             for k in range(lower_power + 1, ro):
@@ -1082,7 +1090,7 @@ class Continuous(Variable):
                         self._max,
                         self._min,
                         2,
-                        int(log(self.precision, 2)),
+                        int(log2(self.precision)),
                         letter,
                     )
                 except TypeError:
@@ -1094,7 +1102,7 @@ class Continuous(Variable):
             else:
                 if (1 / self.precision) % 2 == 0:
                     binary_variables_name_weight, i = self._logarithmic_encoding(
-                        binary_variables_name_weight, i, self._max, self._min, 2, int(log(self.precision, 2)), letter
+                        binary_variables_name_weight, i, self._max, self._min, 2, int(log2(self.precision)), letter
                     )
                     self._encoding_mechanism = "logarithmic 2"
                 else:

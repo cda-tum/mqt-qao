@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 import logging
-from math import ceil, log, sqrt
+from math import ceil, log, sqrt, log2
 from pathlib import Path
 from time import time_ns
 from typing import TYPE_CHECKING, Any
@@ -448,27 +448,12 @@ class Solver:
         if auto_setting:  # To change with the experience
             # num_runs = 100
             threshold = 2 * len(self.qubo.variables)
-            qubit_values = ceil(
-                log(
-                    abs(self.problem.upper_lower_bound_posiform_and_negaform_method(scaled_qubo)),
-                    2,
-                )
-            )
+            qubit_values = ceil(log2(abs(self.problem.upper_lower_bound_posiform_and_negaform_method(scaled_qubo))))
         else:
             if boundaries_estimation_method == "upper lower bound posiform and negaform method":
-                qubit_values = ceil(
-                    log(
-                        abs(self.problem.upper_lower_bound_posiform_and_negaform_method(scaled_qubo)),
-                        2,
-                    )
-                )
+                qubit_values = ceil(log2(abs(self.problem.upper_lower_bound_posiform_and_negaform_method(scaled_qubo))))
             elif boundaries_estimation_method == "naive":
-                qubit_values = ceil(
-                    log(
-                        abs(self.problem.upper_lower_bound_naive_method(scaled_qubo)),
-                        2,
-                    )
-                )
+                qubit_values = ceil(log2(abs(self.problem.upper_lower_bound_naive_method(scaled_qubo))))
 
         if simulator:
             try:  # Load your IBM Quantum account
@@ -525,26 +510,15 @@ class Solver:
 
                 if auto_setting:
                     qubit_values = ceil(
-                        log(
-                            abs(self.problem.upper_lower_bound_posiform_and_negaform_method(scaled_qubo)),
-                            2,
-                        )
+                        log2(abs(self.problem.upper_lower_bound_posiform_and_negaform_method(scaled_qubo)))
                     )
                 else:
                     if boundaries_estimation_method == "upper lower bound posiform and negaform method":
                         qubit_values = ceil(
-                            log(
-                                abs(self.problem.upper_lower_bound_posiform_and_negaform_method(scaled_qubo)),
-                                2,
-                            )
+                            log2(abs(self.problem.upper_lower_bound_posiform_and_negaform_method(scaled_qubo)))
                         )
                     elif boundaries_estimation_method == "naive":
-                        qubit_values = ceil(
-                            log(
-                                abs(self.problem.upper_lower_bound_naive_method(scaled_qubo)),
-                                2,
-                            )
-                        )
+                        qubit_values = ceil(log2(abs(self.problem.upper_lower_bound_naive_method(scaled_qubo))))
 
                 grover_optimizer = GroverOptimizer(qubit_values, num_iterations=threshold, quantum_instance=backend)
 
@@ -1168,7 +1142,7 @@ class Solution:
             rc("text", usetex=True)
             plt.rc("text", usetex=True)
             if label:
-                n, bins, patches = plt.hist(
+                _n, _bins, _patches = plt.hist(
                     self.energies,
                     cumulative=True,
                     histtype="step",
@@ -1177,17 +1151,17 @@ class Solution:
                     label=r"\textit{" + label + "}",
                 )
             else:
-                n, bins, patches = plt.hist(self.energies, cumulative=True, histtype="step", linewidth=2, bins=100)
+                _n, _bins, _patches = plt.hist(self.energies, cumulative=True, histtype="step", linewidth=2, bins=100)
             plt.title(r"\textbf{Cumulative distribution}", fontsize=20)
             plt.xlabel(r"\textit{Energy}", fontsize=20)
             plt.ylabel(r"\textit{occurrence}", fontsize=20)
         else:
             if label:
-                n, bins, patches = plt.hist(
+                _n, _bins, _patches = plt.hist(
                     self.energies, cumulative=True, histtype="step", linewidth=2, bins=100, label=label
                 )
             else:
-                n, bins, patches = plt.hist(self.energies, cumulative=True, histtype="step", linewidth=2, bins=100)
+                _n, _bins, _patches = plt.hist(self.energies, cumulative=True, histtype="step", linewidth=2, bins=100)
             plt.title("Cumulative distribution", fontsize=20)
             plt.xlabel("Energy", fontsize=20)
             plt.ylabel("occurrence", fontsize=20)

@@ -262,30 +262,26 @@ class Constraints:
                                     if isinstance(solution[var][i][j], list):
                                         for k in range(len(solution[var][i][j])):
                                             if expr1_to_sub:
-                                                expr1 = expr1.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr1 = expr1.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                             if expr2_to_sub:
-                                                expr2 = expr2.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr2 = expr2.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                     else:
                                         if expr1_to_sub:
-                                            expr1 = expr1.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr1 = expr1.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                                         if expr2_to_sub:
-                                            expr2 = expr2.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr2 = expr2.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                             else:
                                 if expr1_to_sub:
                                     expr1 = expr1.subs({variables.variables_dict[var][i].symbol: solution[var][i]})
@@ -438,42 +434,36 @@ class Constraints:
                                     if isinstance(solution[var][i][j], list):
                                         for k in range(len(solution[var][i][j])):
                                             if expr1_to_sub:
-                                                expr1 = expr1.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr1 = expr1.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                             if expr2_to_sub:
-                                                expr2 = expr2.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr2 = expr2.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                             if expr3_to_sub:
-                                                expr3 = expr3.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr3 = expr3.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                     else:
                                         if expr1_to_sub:
-                                            expr1 = expr1.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr1 = expr1.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                                         if expr2_to_sub:
-                                            expr2 = expr2.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr2 = expr2.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                                         if expr3_to_sub:
-                                            expr3 = expr3.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr3 = expr3.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                             else:
                                 if expr1_to_sub:
                                     expr1 = expr1.subs({variables.variables_dict[var][i].symbol: solution[var][i]})
@@ -642,42 +632,36 @@ class Constraints:
                                     if isinstance(solution[var][i][j], list):
                                         for k in range(len(solution[var][i][j])):
                                             if expr1_to_sub:
-                                                expr1 = expr1.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr1 = expr1.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                             if expr2_to_sub:
-                                                expr2 = expr2.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr2 = expr2.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                             if expr3_to_sub:
-                                                expr3 = expr3.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr3 = expr3.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                     else:
                                         if expr1_to_sub:
-                                            expr1 = expr1.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr1 = expr1.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                                         if expr2_to_sub:
-                                            expr2 = expr2.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr2 = expr2.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                                         if expr3_to_sub:
-                                            expr3 = expr3.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr3 = expr3.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                             else:
                                 if expr1_to_sub:
                                     expr1 = expr1.subs({variables.variables_dict[var][i].symbol: solution[var][i]})
@@ -838,42 +822,36 @@ class Constraints:
                                     if isinstance(solution[var][i][j], list):
                                         for k in range(len(solution[var][i][j])):
                                             if expr1_to_sub:
-                                                expr1 = expr1.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr1 = expr1.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                             if expr2_to_sub:
-                                                expr2 = expr2.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr2 = expr2.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                             if expr3_to_sub:
-                                                expr3 = expr3.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr3 = expr3.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                     else:
                                         if expr1_to_sub:
-                                            expr1 = expr1.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr1 = expr1.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                                         if expr2_to_sub:
-                                            expr2 = expr2.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr2 = expr2.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                                         if expr3_to_sub:
-                                            expr3 = expr3.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr3 = expr3.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                             else:
                                 if expr1_to_sub:
                                     expr1 = expr1.subs({variables.variables_dict[var][i].symbol: solution[var][i]})
@@ -988,7 +966,7 @@ class Constraints:
                     var.binary_variables_name_weight,
                 )
 
-            min_val, max_val, const = self._min_max_const_estimation(exp)
+            _min_val, max_val, const = self._min_max_const_estimation(exp)
             if max_val + const > 0:
                 if len(str(max_val + const).split(".")) == 2:
                     if elem[3] and float("0." + str(max_val + const).split(".")[1]) != 0.0:
@@ -1011,7 +989,7 @@ class Constraints:
         else:
             el = str(elem[0]).split(">=")
             exp = expand(cast(Expr, (el[0] + "-" + el[1]))).evalf()  # type: ignore[no-untyped-call]
-            min_val, max_val, const = self._min_max_const_estimation(exp)
+            _min_val, max_val, const = self._min_max_const_estimation(exp)
             if max_val + const > 0:
                 if len(str(max_val + const).split(".")) == 2:
                     precision = float("0." + str(max_val + const).split(".")[1])
@@ -1067,30 +1045,26 @@ class Constraints:
                                     if isinstance(solution[var][i][j], list):
                                         for k in range(len(solution[var][i][j])):
                                             if expr1_to_sub:
-                                                expr1 = expr1.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr1 = expr1.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                             if expr2_to_sub:
-                                                expr2 = expr2.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr2 = expr2.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                     else:
                                         if expr1_to_sub:
-                                            expr1 = expr1.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr1 = expr1.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                                         if expr2_to_sub:
-                                            expr2 = expr2.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr2 = expr2.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                             else:
                                 if expr1_to_sub:
                                     expr1 = expr1.subs({variables.variables_dict[var][i].symbol: solution[var][i]})
@@ -1186,7 +1160,7 @@ class Constraints:
                     expand(cast(Expr, (el[0] + "-" + el[1]))).evalf(),  # type: ignore[no-untyped-call]
                     var.binary_variables_name_weight,
                 )
-            min_val, max_val, const = self._min_max_const_estimation(exp)
+            min_val, _max_val, const = self._min_max_const_estimation(exp)
             const = -const
             if const - min_val > 0:
                 if len(str(const - min_val).split(".")) == 2:
@@ -1210,7 +1184,7 @@ class Constraints:
         else:
             el = str(elem[0]).split("<=")
             exp = expand(cast(Expr, (el[0] + "-" + el[1]))).evalf()  # type: ignore[no-untyped-call]
-            min_val, max_val, const = self._min_max_const_estimation(exp)
+            min_val, _max_val, const = self._min_max_const_estimation(exp)
             const = -const
             if const - min_val > 0:
                 if len(str(const - min_val).split(".")) == 2:
@@ -1266,30 +1240,26 @@ class Constraints:
                                     if isinstance(solution[var][i][j], list):
                                         for k in range(len(solution[var][i][j])):
                                             if expr1_to_sub:
-                                                expr1 = expr1.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr1 = expr1.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                             if expr2_to_sub:
-                                                expr2 = expr2.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr2 = expr2.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                     else:
                                         if expr1_to_sub:
-                                            expr1 = expr1.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr1 = expr1.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                                         if expr2_to_sub:
-                                            expr2 = expr2.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr2 = expr2.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                             else:
                                 if expr1_to_sub:
                                     expr1 = expr1.subs({variables.variables_dict[var][i].symbol: solution[var][i]})
@@ -1385,7 +1355,7 @@ class Constraints:
                     expand(cast(Expr, (el[0] + "-" + el[1]))).evalf(),  # type: ignore[no-untyped-call]
                     var.binary_variables_name_weight,
                 )
-            min_val, max_val, const = self._min_max_const_estimation(exp)
+            _min_val, max_val, const = self._min_max_const_estimation(exp)
             if max_val + const > 0:
                 if len(str(max_val + const).split(".")) == 2:
                     if elem[3] and float("0." + str(max_val + const).split(".")[1]) != 0.0:
@@ -1411,7 +1381,7 @@ class Constraints:
         else:
             el = str(elem[0]).split(">")
             exp = expand(cast(Expr, (el[0] + "-" + el[1]))).evalf()  # type: ignore[no-untyped-call]
-            min_val, max_val, const = self._min_max_const_estimation(exp)
+            _min_val, max_val, const = self._min_max_const_estimation(exp)
             if max_val + const > 0:
                 if len(str(max_val + const).split(".")) == 2:
                     precision = float("0." + str(max_val + const).split(".")[1])
@@ -1475,30 +1445,26 @@ class Constraints:
                                     if isinstance(solution[var][i][j], list):
                                         for k in range(len(solution[var][i][j])):
                                             if expr1_to_sub:
-                                                expr1 = expr1.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr1 = expr1.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                             if expr2_to_sub:
-                                                expr2 = expr2.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr2 = expr2.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                     else:
                                         if expr1_to_sub:
-                                            expr1 = expr1.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr1 = expr1.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                                         if expr2_to_sub:
-                                            expr2 = expr2.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr2 = expr2.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                             else:
                                 if expr1_to_sub:
                                     expr1 = expr1.subs({variables.variables_dict[var][i].symbol: solution[var][i]})
@@ -1594,7 +1560,7 @@ class Constraints:
                     expand(cast(Expr, (el[0] + "-" + el[1]))).evalf(),  # type: ignore[no-untyped-call]
                     var.binary_variables_name_weight,
                 )
-            min_val, max_val, const = self._min_max_const_estimation(exp)
+            min_val, _max_val, const = self._min_max_const_estimation(exp)
             precision = 1.0
             const = -const
             if const - min_val > 0:
@@ -1623,7 +1589,7 @@ class Constraints:
         else:
             el = str(elem[0]).split("<")
             exp = expand(cast(Expr, (el[0] + "-" + el[1]))).evalf()  # type: ignore[no-untyped-call]
-            min_val, max_val, const = self._min_max_const_estimation(exp)
+            min_val, _max_val, const = self._min_max_const_estimation(exp)
             const = -const
             if const - min_val > 0:
                 if len(str(const - min_val).split(".")) == 2:
@@ -1688,30 +1654,26 @@ class Constraints:
                                     if isinstance(solution[var][i][j], list):
                                         for k in range(len(solution[var][i][j])):
                                             if expr1_to_sub:
-                                                expr1 = expr1.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr1 = expr1.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                             if expr2_to_sub:
-                                                expr2 = expr2.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr2 = expr2.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                     else:
                                         if expr1_to_sub:
-                                            expr1 = expr1.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr1 = expr1.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                                         if expr2_to_sub:
-                                            expr2 = expr2.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr2 = expr2.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                             else:
                                 if expr1_to_sub:
                                     expr1 = expr1.subs({variables.variables_dict[var][i].symbol: solution[var][i]})
@@ -1823,30 +1785,26 @@ class Constraints:
                                     if isinstance(solution[var][i][j], list):
                                         for k in range(len(solution[var][i][j])):
                                             if expr1_to_sub:
-                                                expr1 = expr1.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr1 = expr1.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                             if expr2_to_sub:
-                                                expr2 = expr2.subs(
-                                                    {
-                                                        variables.variables_dict[var][i][j][k].symbol: solution[var][i][
-                                                            j
-                                                        ][k]
-                                                    }
-                                                )
+                                                expr2 = expr2.subs({
+                                                    variables.variables_dict[var][i][j][k].symbol: solution[var][i][j][
+                                                        k
+                                                    ]
+                                                })
                                     else:
                                         if expr1_to_sub:
-                                            expr1 = expr1.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr1 = expr1.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                                         if expr2_to_sub:
-                                            expr2 = expr2.subs(
-                                                {variables.variables_dict[var][i][j].symbol: solution[var][i][j]}
-                                            )
+                                            expr2 = expr2.subs({
+                                                variables.variables_dict[var][i][j].symbol: solution[var][i][j]
+                                            })
                             else:
                                 if expr1_to_sub:
                                     expr1 = expr1.subs({variables.variables_dict[var][i].symbol: solution[var][i]})
