@@ -1068,7 +1068,7 @@ class Solution:
             rc("text", usetex=True)
             plt.rc("text", usetex=True)
             if label:
-                _n, _bins, _patches = plt.hist(
+                plt.hist(
                     self.energies,
                     cumulative=True,
                     histtype="step",
@@ -1077,17 +1077,17 @@ class Solution:
                     label=r"\textit{" + label + "}",
                 )
             else:
-                _n, _bins, _patches = plt.hist(self.energies, cumulative=True, histtype="step", linewidth=2, bins=100)
+                plt.hist(self.energies, cumulative=True, histtype="step", linewidth=2, bins=100)
             plt.title(r"\textbf{Cumulative distribution}", fontsize=20)
             plt.xlabel(r"\textit{Energy}", fontsize=20)
             plt.ylabel(r"\textit{occurrence}", fontsize=20)
         else:
             if label:
-                _n, _bins, _patches = plt.hist(
+                plt.hist(
                     self.energies, cumulative=True, histtype="step", linewidth=2, bins=100, label=label
                 )
             else:
-                _n, _bins, _patches = plt.hist(self.energies, cumulative=True, histtype="step", linewidth=2, bins=100)
+                plt.hist(self.energies, cumulative=True, histtype="step", linewidth=2, bins=100)
             plt.title("Cumulative distribution", fontsize=20)
             plt.xlabel("Energy", fontsize=20)
             plt.ylabel("occurrence", fontsize=20)

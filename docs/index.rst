@@ -1,7 +1,7 @@
 Welcome to MQT Quantum Auto Optimizer's documentation!
 =========================================
 
-MQT  Quantum Auto Optimizer is a tool for automatic framework to assist users in utilizing quantum solvers for optimization tasks while preserving interfaces that closely resemble conventional optimization practices as part of the `Munich Quantum Toolkit <https://mqt.readthedocs.io>`_ (*MQT*) by the `Chair for Design Automation <https://www.cda.cit.tum.de/>`_ at the `Technical University of Munich <https://www.tum.de>`_.
+MQT Quantum Auto Optimizer is a tool for automatic framework to assist users in utilizing quantum solvers for optimization tasks while preserving interfaces that closely resemble conventional optimization practices and is developed as part of the `Munich Quantum Toolkit <https://mqt.readthedocs.io>`_ (*MQT*) by the `Chair for Design Automation <https://www.cda.cit.tum.de/>`_ at the `Technical University of Munich <https://www.tum.de>`_.
 
 From a user's perspective, the framework is used as follows:
 
