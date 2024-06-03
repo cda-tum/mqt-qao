@@ -29,6 +29,7 @@ dependencies = [
     "docplex>=2.21.207",
     "dwave-system>=1.21.0",
     "dwave-samplers>=1.2.0",
+    "rectangle-packer<=2.0.1"
 ]
 
 classifiers = [
