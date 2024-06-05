@@ -51,4 +51,3 @@ The class provides for exploiting the solver:
         - *sequential penalty increase*
         - *scaled sequential penalty increase*
         - *binary search penalty algorithm*
-
