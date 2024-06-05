@@ -30,6 +30,12 @@ If you are interested in the theory behind MQT Quantum Auto Optimizer, have a lo
 
     Quickstart
     Usage
+    Variables
+    Constraints
+    ObjectiveFunction
+    Problem
+    Solvers
+    Solution
     References
 
  .. toctree::
