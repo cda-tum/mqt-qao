@@ -8,7 +8,7 @@ There are two ways how to use MQT Quantum Auto Optimizer:
 Usage via pip package
 ---------------------
 
-MQT Quantum Auto Optimizer is available via `PyPI <https://pypi.org/project/mqt.predictor/>`_
+MQT Quantum Auto Optimizer is available via `PyPI <https://pypi.org/project/mqt.qao/>`_
 
 .. code-block:: console
 
@@ -25,7 +25,7 @@ For that, the repository must be cloned and installed:
 .. code-block::
 
    git clone https://github.com/cda-tum/mqt-qao.git
-   cd mqt-predictor
+   cd mqt-qao
    pip install .
 
 Afterwards, the package can be used as described :ref:`above <pip_usage>`.
