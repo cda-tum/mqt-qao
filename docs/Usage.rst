@@ -12,7 +12,7 @@ MQT Quantum Auto Optimizer is available via `PyPI <https://pypi.org/project/mqt.
 
 .. code-block:: console
 
-   (venv) $ pip install mqt.predictor
+   (venv) $ pip install mqt.qao
 
 
 .. _pip_usage:
