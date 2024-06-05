@@ -25,7 +25,8 @@ The class provides methods to declare variables:
     - *hard* parameter is a boolean that indicates if the constraint is hard or soft.
     - *variable_precision* parameter is a boolean that indicates if the constraint is to be considered in the precision of the variables.
 
-Examples:
+Example:
+--------
 
 .. code-block:: python
 

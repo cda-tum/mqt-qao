@@ -68,8 +68,8 @@ The class provides methods to declare variables:
         - *bounded coefficient _bound_*, where _bound_ is the maximum coefficient that can be used in the encoding.
     - *shape*: list of integers representing the shape of the array
 
-Examples:
-
+Example:
+--------
 .. code-block:: python
 
     from mqt.qao.variables import Variables

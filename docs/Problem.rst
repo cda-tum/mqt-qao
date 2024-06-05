@@ -27,6 +27,9 @@ and a method for obtaining the HUBO or PUBO formulation of the problem as qubove
         - 'manual'
     - *lambda_value*  The value of the lambda parameter if the use want to manually select it. The default value is 1.0.
 
+Example:
+--------
+
 .. code-block:: python
 
     from mqt.qao.constraints import Constraints

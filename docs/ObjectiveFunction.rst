@@ -13,6 +13,9 @@ The class provides methods to declare variables:
     - *minimization* parameter specifies if the objective function is to be minimized or maximized (optimization direction).
     - *weight* parameter is the weight of the objective function in case of multi-objective optimization.
 
+Example:
+--------
+
 .. code-block:: python
 
     from mqt.qao.constraints import Constraints
