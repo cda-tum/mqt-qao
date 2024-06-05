@@ -47,6 +47,7 @@ The class has the following methods for helping users in analyzing the solution:
     - problem_features: bool, i.e. whether to show the problem features in the report or not
 
 
+
 Examples:
 ---------
 
