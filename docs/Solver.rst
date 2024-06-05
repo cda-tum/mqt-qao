@@ -202,8 +202,12 @@ Simulated Annealing
     from mqt.qao.solver import Solver
 
     variables = Variables()
-    m1 = variables.add_continuous_variables_array("M1", [1, 2], -1, 2, -1, "uniform", "logarithmic 2")
-    m2 = variables.add_continuous_variables_array("M2", [2, 1], -1, 2, -1, "uniform", "logarithmic 2")
+    m1 = variables.add_continuous_variables_array(
+        "M1", [1, 2], -1, 2, -1, "uniform", "logarithmic 2"
+    )
+    m2 = variables.add_continuous_variables_array(
+        "M2", [2, 1], -1, 2, -1, "uniform", "logarithmic 2"
+    )
     objective_function = ObjectiveFunction()
     objective_function.add_objective_function(np.matmul(m1, m2).item(0, 0))
     constraint = Constraints()
@@ -212,7 +216,10 @@ Simulated Annealing
     problem.create_problem(variables, constraint, objective_function)
     solver = Solver()
     solution = solver.solve_simulated_annealing(
-        problem, max_lambda_update=max_lambda_update, lambda_update_mechanism=lambda_update, lambda_strategy=lambda_strategy
+        problem,
+        max_lambda_update=max_lambda_update,
+        lambda_update_mechanism=lambda_update,
+        lambda_strategy=lambda_strategy,
     )
 
 Quantum Annealing
@@ -226,8 +233,12 @@ Quantum Annealing
     from mqt.qao.solver import Solver
 
     variables = Variables()
-    m1 = variables.add_continuous_variables_array("M1", [1, 2], -1, 2, -1, "uniform", "logarithmic 2")
-    m2 = variables.add_continuous_variables_array("M2", [2, 1], -1, 2, -1, "uniform", "logarithmic 2")
+    m1 = variables.add_continuous_variables_array(
+        "M1", [1, 2], -1, 2, -1, "uniform", "logarithmic 2"
+    )
+    m2 = variables.add_continuous_variables_array(
+        "M2", [2, 1], -1, 2, -1, "uniform", "logarithmic 2"
+    )
     objective_function = ObjectiveFunction()
     objective_function.add_objective_function(np.matmul(m1, m2).item(0, 0))
     constraint = Constraints()
@@ -236,7 +247,11 @@ Quantum Annealing
     problem.create_problem(variables, constraint, objective_function)
     solver = Solver()
     solution = solver.solve_dwave_quantum_annealer(
-        token, problem, max_lambda_update=max_lambda_update, lambda_update_mechanism=lambda_update, lambda_strategy=lambda_strategy
+        token,
+        problem,
+        max_lambda_update=max_lambda_update,
+        lambda_update_mechanism=lambda_update,
+        lambda_strategy=lambda_strategy,
     )
 
 
@@ -261,7 +276,9 @@ Grover Adaptive Search
     problem = Problem()
     problem.create_problem(variables, constraint, objective_function)
     solver = Solver()
-    solution = solver.solve_grover_adaptive_search_qubo(problem, qubit_values=6, num_runs=10)
+    solution = solver.solve_grover_adaptive_search_qubo(
+        problem, qubit_values=6, num_runs=10
+    )
 
 
 
@@ -311,4 +328,3 @@ Variational Quantum Eigensolver
         problem,
         num_runs=10,
     )
-
