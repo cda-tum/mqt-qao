@@ -85,6 +85,9 @@ Examples:
     c0 = variables.add_continuous_variable("c", -2, 2, 0.25)
 
     # declaration of a 2D array of continuous variables in the range [-1, 1] with a precision of 0.5
-    m1 = variables.add_continuous_variables_array("M1", [1, 2], -1, 2, -1, "uniform", "logarithmic 2")
-    m2 = variables.add_continuous_variables_array("M2", [2, 1], -1, 2, -1, "uniform", "logarithmic 2")
-
+    m1 = variables.add_continuous_variables_array(
+        "M1", [1, 2], -1, 2, -1, "uniform", "logarithmic 2"
+    )
+    m2 = variables.add_continuous_variables_array(
+        "M2", [2, 1], -1, 2, -1, "uniform", "logarithmic 2"
+    )
