@@ -10,6 +10,7 @@ From a user's perspective, the framework is used as follows:
    :alt: Illustration of the MQT Quantum Auto Optimizer framework
    :align: center
 
+The framework is designed to be user-friendly and to provide a high-level interface for assisting assist users in utilizing quantum solvers for optimization tasks, not requiring any prior knowledge of quantum computing.
 The framework prompts users to specify variables, optimization criteria, as well as validity constraints and, afterwards, allows them to choose the desired solver. Subsequently, it automatically transforms the problem description into a format compatible with the chosen solver and provides the resulting solution. Additionally, the framework offers instruments for analyzing solution validity and quality.
 
 If you are interested in the theory behind MQT Quantum Auto Optimizer, have a look at the publications in the :doc:`references list <References>`.
