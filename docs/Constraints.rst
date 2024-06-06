@@ -16,7 +16,7 @@ Types of constraints supported:
 - *Xor constraint* among binary variables, i.e. a xor b = c imposed with 2ab - 2(a+b)c - 4(a+b)\_aux+4_aux c +a+b+c+4+\_aux
 
 Constraints declarations
-----------------------
+------------------------
 
 The class provides methods to declare variables:
 

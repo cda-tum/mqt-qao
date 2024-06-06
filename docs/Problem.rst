@@ -15,16 +15,16 @@ The class provides a  method for declaring the problem:
 
 and a method for obtaining the HUBO or PUBO formulation of the problem as qubovert PUBO object:
 
-- * write_the_final_cost_function( lambda_strategy: str, lambda_value: float = 1)* : This method is used to obtain the HUBO or PUBO formulation of the problem as qubovert PUBO object. The method takes two arguments:
+- *write_the_final_cost_function( lambda_strategy: str, lambda_value: float = 1)* : This method is used to obtain the HUBO or PUBO formulation of the problem as qubovert PUBO object. The method takes two arguments:
     - *lambda_strategy* The strategy to be used for the conversion of the problem to HUBO or PUBO. The possible values are:
-        - 'upper_bound_only_positive'
-        - 'maximum_coefficient'
-        - 'VLM'
-        - 'MOC'
-        - 'MOMC'
-        - 'upper lower bound naive'
-        - 'upper lower bound posiform and negaform method'
-        - 'manual'
+        - upper_bound_only_positive
+        - maximum_coefficient
+        - VLM
+        - MOC
+        - MOMC
+        - upper lower bound naive
+        - upper lower bound posiform and negaform method
+        - manual
     - *lambda_value*  The value of the lambda parameter if the use want to manually select it. The default value is 1.0.
 
 Example:
