@@ -45,7 +45,6 @@ lambdas_conf = [
 ]
 
 files = os.listdir("Data/")
-files = ["f3_l-d_kp_4_20"]
 for file in files:
     print(file)
     with Path("./Data/" + file).open("r", encoding=locale.getpreferredencoding(False)) as f:
@@ -102,6 +101,7 @@ for file in files:
         )
         if not isinstance(solution, bool):
             all_satisfy, each_satisfy = solution.check_constraint_optimal_solution()
+            print(all_satisfy, each_satisfy)
             solution.valid_solutions()
             solution.wring_json_reports(
                 filename="simulated_annealing_knapsack_" + file + "_" + lambdas_m + "_" + lambdas_update,

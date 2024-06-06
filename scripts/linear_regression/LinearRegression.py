@@ -68,6 +68,7 @@ solution = solver.solve_simulated_annealing(
 )
 if not isinstance(solution, bool):
     all_satisfy, each_satisfy = solution.check_constraint_optimal_solution()
+    print(all_satisfy, each_satisfy)
     solution.valid_solutions()
     print(solution.best_energy)
     solution.wring_json_reports(filename="simulated_annealing_linear_regression_Iris", problem_features=True)
