@@ -30,11 +30,11 @@ If you are interested in the theory behind MQT Quantum Auto Optimizer, have a lo
 
     Quickstart
     Usage
-    Variables
+    Variable
     Constraints
     ObjectiveFunction
     Problem
-    Solvers
+    Solver
     Solution
     References
 

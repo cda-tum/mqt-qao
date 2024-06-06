@@ -36,21 +36,21 @@ The class provides for exploiting the solver:
         lambda_value: float = 1.0,
         save_time: bool = False,
     ) : Solve the problem using the simulated annealer. The parameters are:
-    - *problem*: the problem to solve
-    - *auto_setting*: if True, the parameters are automatically set
-    - *beta_range*: the range of beta values to use
-    - *num_reads*: the number of reads
-    - *annealing_time*: the annealing time
-    - *num_sweeps_per_beta*: the number of sweeps per beta
-    - *beta_schedule_type*: the beta schedule type
-    - *seed*: the seed
-    - *initial_states*: the initial states
-    - *initial_states_generator*: the initial states generator
-    - *max_lambda_update*: the maximum lambda update if the constraints are not satisfied
-    - *lambda_update_mechanism*: the lambda update mechanism among:
-        - *sequential penalty increase*
-        - *scaled sequential penalty increase*
-        - *binary search penalty algorithm*
+        - *problem*: the problem to solve
+        - *auto_setting*: if True, the parameters are automatically set
+        - *beta_range*: the range of beta values to use
+        - *num_reads*: the number of reads
+        - *annealing_time*: the annealing time
+        - *num_sweeps_per_beta*: the number of sweeps per beta
+        - *beta_schedule_type*: the beta schedule type
+        - *seed*: the seed
+        - *initial_states*: the initial states
+        - *initial_states_generator*: the initial states generator
+        - *max_lambda_update*: the maximum lambda update if the constraints are not satisfied
+        - *lambda_update_mechanism*: the lambda update mechanism among:
+            - *sequential penalty increase*
+            - *scaled sequential penalty increase*
+            - *binary search penalty algorithm*
 - solve_dwave_quantum_annealer(
         problem: Problem,
         token: str,
@@ -74,26 +74,26 @@ The class provides for exploiting the solver:
         save_time: bool = False,
         save_compilation_time: bool = False,
     ) : Solve the problem using the D-Wave quantum annealer. The parameters are:
-    - *problem*: the problem to solve
-    - *token*: the token to access the D-Wave API
-    - *auto_setting*: if True, the parameters are automatically set
-    - *failover*: if True, the failover is enabled
-    - *config_file*: the configuration file
-    - *endpoint*: the endpoint
-    - *solver*: the solver to use
-    - *annealing_time_scheduling*: the annealing time scheduling
-    - *num_reads*: the number of reads
-    - *auto_scale*: if True, the problem is automatically scaled
-    - *flux_drift_compensation*: if True, the flux drift compensation is enabled
-    - *initial_state*: the initial state
-    - *programming_thermalization*: the programming thermalization
-    - *readout_thermalization*: the readout thermalization
-    - *reduce_intersample_correlation*: if True, the intersample correlation is reduced
-    - *max_lambda_update*: the maximum lambda update if the constraints are not satisfied
-    - *lambda_update_mechanism*: the lambda update mechanism among:
-        - *sequential penalty increase*
-        - *scaled sequential penalty increase*
-        - *binary search penalty algorithm*
+        - *problem*: the problem to solve
+        - *token*: the token to access the D-Wave API
+        - *auto_setting*: if True, the parameters are automatically set
+        - *failover*: if True, the failover is enabled
+        - *config_file*: the configuration file
+        - *endpoint*: the endpoint
+        - *solver*: the solver to use
+        - *annealing_time_scheduling*: the annealing time scheduling
+        - *num_reads*: the number of reads
+        - *auto_scale*: if True, the problem is automatically scaled
+        - *flux_drift_compensation*: if True, the flux drift compensation is enabled
+        - *initial_state*: the initial state
+        - *programming_thermalization*: the programming thermalization
+        - *readout_thermalization*: the readout thermalization
+        - *reduce_intersample_correlation*: if True, the intersample correlation is reduced
+        - *max_lambda_update*: the maximum lambda update if the constraints are not satisfied
+        - *lambda_update_mechanism*: the lambda update mechanism among:
+            - *sequential penalty increase*
+            - *scaled sequential penalty increase*
+            - *binary search penalty algorithm*
 - solve_grover_adaptive_search_qubo(
         problem: Problem,
         auto_setting: bool = False,
@@ -109,18 +109,18 @@ The class provides for exploiting the solver:
         save_time: bool = False,
         save_compilation_time: bool = False,
     ) : Solve the problem using the Grover Adaptive Search. The parameters are:
-    - *problem*: the problem to solve
-    - *auto_setting*: if True, the parameters are automatically set
-    - *qubit_values*: the number of qubit values, if the user want to specify it manually
-    - *coeff_precision*: the coefficient precision
-    - *threshold*: the threshold
-    - *num_runs*: the number of runs
-    - *max_lambda_update*: the maximum lambda update if the constraints are not satisfied
-    - *boundaries_estimation_method*: the boundaries estimation method for estimating the necessary number of qubit value
-    - *lambda_update_mechanism*: the lambda update mechanism among:
-        - *sequential penalty increase*
-        - *scaled sequential penalty increase*
-        - *binary search penalty algorithm*
+        - *problem*: the problem to solve
+        - *auto_setting*: if True, the parameters are automatically set
+        - *qubit_values*: the number of qubit values, if the user want to specify it manually
+        - *coeff_precision*: the coefficient precision
+        - *threshold*: the threshold
+        - *num_runs*: the number of runs
+        - *max_lambda_update*: the maximum lambda update if the constraints are not satisfied
+        - *boundaries_estimation_method*: the boundaries estimation method for estimating the necessary number of qubit value
+        - *lambda_update_mechanism*: the lambda update mechanism among:
+            - *sequential penalty increase*
+            - *scaled sequential penalty increase*
+            - *binary search penalty algorithm*
 - solve_qaoa_qubo(
         problem: Problem,
         auto_setting: bool = False,
@@ -139,21 +139,21 @@ The class provides for exploiting the solver:
         save_time: bool = False,
         save_compilation_time: bool = False,
     ) : Solve the problem using the Quantum Approximate Optimization Algorithm. The parameters are:
-    - *problem*: the problem to solve
-    - *auto_setting*: if True, the parameters are automatically set
-    - *num_runs*: the number of runs
-    - *optimizer*: the optimizer
-    - *reps*: the number of repetitions
-    - *initial_state*: the initial state
-    - *mixer*: the mixer
-    - *initial_point*: the initial point
-    - *aggregation*: the aggregation function
-    - *callback*: the callback function
-    - *max_lambda_update*: the maximum lambda update if the constraints are not satisfied
-    - *lambda_update_mechanism*: the lambda update mechanism among:
-        - *sequential penalty increase*
-        - *scaled sequential penalty increase*
-        - *binary search penalty algorithm*
+        - *problem*: the problem to solve
+        - *auto_setting*: if True, the parameters are automatically set
+        - *num_runs*: the number of runs
+        - *optimizer*: the optimizer
+        - *reps*: the number of repetitions
+        - *initial_state*: the initial state
+        - *mixer*: the mixer
+        - *initial_point*: the initial point
+        - *aggregation*: the aggregation function
+        - *callback*: the callback function
+        - *max_lambda_update*: the maximum lambda update if the constraints are not satisfied
+        - *lambda_update_mechanism*: the lambda update mechanism among:
+            - *sequential penalty increase*
+            - *scaled sequential penalty increase*
+            - *binary search penalty algorithm*
 - solve_vqe_qubo(
         self,
         problem: Problem,
@@ -171,19 +171,19 @@ The class provides for exploiting the solver:
         save_time: bool = False,
         save_compilation_time: bool = False,
     ) : Solve the problem using the Variational Quantum Eigensolver. The parameters are:
-    - *problem*: the problem to solve
-    - *auto_setting*: if True, the parameters are automatically set
-    - *num_runs*: the number of runs
-    - *optimizer*: the optimizer
-    - *ansatz*: the ansatz
-    - *initial_point*: the initial point
-    - *aggregation*: the aggregation function
-    - *callback*: the callback function
-    - *max_lambda_update*: the maximum lambda update if the constraints are not satisfied
-    - *lambda_update_mechanism*: the lambda update mechanism among:
-        - *sequential penalty increase*
-        - *scaled sequential penalty increase*
-        - *binary search penalty algorithm*
+        - *problem*: the problem to solve
+        - *auto_setting*: if True, the parameters are automatically set
+        - *num_runs*: the number of runs
+        - *optimizer*: the optimizer
+        - *ansatz*: the ansatz
+        - *initial_point*: the initial point
+        - *aggregation*: the aggregation function
+        - *callback*: the callback function
+        - *max_lambda_update*: the maximum lambda update if the constraints are not satisfied
+        - *lambda_update_mechanism*: the lambda update mechanism among:
+            - *sequential penalty increase*
+            - *scaled sequential penalty increase*
+            - *binary search penalty algorithm*
 
 For each of them, the outcome is a Solution object.
 

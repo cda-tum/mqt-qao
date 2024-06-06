@@ -39,7 +39,7 @@ The class has the following methods for helping users in analyzing the solution:
 - *tts(ref_value: float | None = None, target_probability: float = 0.99)*: This method is used to get the time-to-solution of the best solution obtained in all the runs, which is the time required to obtain a solution with a certain probability. The parameters are:
     - ref_value: float | None, i.e. the reference value to calculate the p-range
     - target_probability: float, i.e. the target probability to calculate the time-to-solution
--*wring_json_reports(filename: str = "report", weak: bool = False, ref_value: float | None = None, target_probability: float = 0.99, problem_features: bool = False)* : This method is used to write the reports in json format. The parameters are:
+- *wring_json_reports(filename: str = "report", weak: bool = False, ref_value: float | None = None, target_probability: float = 0.99, problem_features: bool = False)* : This method is used to write the reports in json format. The parameters are:
     - filename: str, i.e. the name of the file where the report will be saved
     - weak: bool, i.e. whether to consider in the evaluation the weak constraints
     - ref_value: float | None, i.e. the reference value to calculate the p-range
