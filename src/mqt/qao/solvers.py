@@ -27,7 +27,8 @@ from qiskit_optimization.algorithms import (
 )
 from qiskit_optimization.translators import from_docplex_mp
 from qubovert import PUBO, QUBO
-from scikit_build_core._compat.importlib import resources
+
+from scikit_build_core._compat.importlib import resources  # type: ignore[PLC2701]
 
 if TYPE_CHECKING:
     from collections.abc import Callable

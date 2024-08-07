@@ -32,6 +32,7 @@ dependencies = [
     "dwave-samplers>=1.2.0",
     "numpy<2.0.0",
     "scikit-learn>=1.0.0",
+    "scikit_build_core>=0.1.0",
 ]
 
 classifiers = [
@@ -134,7 +135,7 @@ module = [
     "dimod.*",
     "dwave.*",
     "scikit-learn.*",
-    "pkg_resources.*",
+    "scikit_build_core.*",
 ]
 ignore_missing_imports = true
 
