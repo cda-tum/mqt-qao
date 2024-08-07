@@ -808,7 +808,7 @@ class Solver:
         if solver_info is None:
             solver_info = {}
         sol = Solution()
-        if y == 0 and not token:  # QA
+        if y == 0 and token:  # QA
             print("The best solver is the Quantum Annealer. The problem will be solved with the Quantum Annealer\n")
             failover = True
             config_file = None
