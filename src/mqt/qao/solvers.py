@@ -1112,8 +1112,8 @@ class Solver:
 
         # Convert the resource path to a Path object
         path_ml = resources.files("mqt.qao").joinpath("model/RandomForest")
-        path_scalerk = path_ml / "scalerKCross.pkl"
-        path_scaler = path_ml / "scaler.pkl"
+        path_scalerk = path_ml / "ScalerKCross.pkl"
+        path_scaler = path_ml / "Scaler.pkl"
         path_model = path_ml / "model.pkl"
         with path_scalerk.open("rb") as file:
             scalerk = pickle.load(file)
