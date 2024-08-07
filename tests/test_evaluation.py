@@ -1059,7 +1059,9 @@ def test_simulated_annealer_solver_constrained(lambda_strategy: str, constraint_
     problem = Problem()
     problem.create_problem(variables, constraint, objective_function)
     solver = Solver()
-    solution = solver.solve_simulated_annealing(problem, lambda_strategy=lambda_strategy, num_reads=100, annealing_time=1000)
+    solution = solver.solve_simulated_annealing(
+        problem, lambda_strategy=lambda_strategy, num_reads=100, annealing_time=1000
+    )
     if isinstance(solution, Solution):
         all_satisfy, _each_satisfy = solution.check_constraint_optimal_solution()
         if constraint_expr == "c >= 1":
