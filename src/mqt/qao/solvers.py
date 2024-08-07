@@ -11,7 +11,6 @@ from typing import TYPE_CHECKING, Any
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pkg_resources
 from docplex.mp.model import Model
 from dwave.samplers import SimulatedAnnealingSampler
 from dwave.system import DWaveSampler, EmbeddingComposite
@@ -28,6 +27,7 @@ from qiskit_optimization.algorithms import (
 )
 from qiskit_optimization.translators import from_docplex_mp
 from qubovert import PUBO, QUBO
+from scikit_build_core._compat.importlib import resources
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -1110,7 +1110,7 @@ class Solver:
         x[0, 7] = coeff_m
         x[0, 8] = coeff_v
         # Access the file within the package
-        resource_path = pkg_resources.resource_filename("mqt.qao", "model/RandomForest")
+        resource_path = resources.files("mqt.qao").joinpath("model/RandomForest")
 
         # Convert the resource path to a Path object
         path_ml = Path(resource_path)
