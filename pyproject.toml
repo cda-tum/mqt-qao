@@ -90,8 +90,6 @@ xfail_strict = true
 filterwarnings = [
 #    "error",  # Temporarily disabled because of https://github.com/cda-tum/mqt-qao/issues/3. Uncomment when fixed.
     "ignore:.*Qiskit with Python 3.8.*:DeprecationWarning:",
-    "ignore::sklearn.exceptions.InconsistentVersionWarning:sklearn:",
-    "ignore::DeprecationWarning:.*(importlib).*",
 ]
 
 
