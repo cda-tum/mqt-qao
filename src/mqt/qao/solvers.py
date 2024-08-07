@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import logging
 import pickle
+from importlib import resources
 from math import ceil, log, log2, sqrt
 from pathlib import Path
 from time import time_ns
@@ -27,7 +28,6 @@ from qiskit_optimization.algorithms import (
 )
 from qiskit_optimization.translators import from_docplex_mp
 from qubovert import PUBO, QUBO
-from scikit_build_core._compat.importlib import resources  # type: ignore[PLC2701]
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -1109,11 +1109,9 @@ class Solver:
         x[0, 6] = elems_v[2]
         x[0, 7] = coeff_m
         x[0, 8] = coeff_v
-        # Access the file within the package
-        resource_path = resources.files("mqt.qao").joinpath("model/RandomForest")
 
         # Convert the resource path to a Path object
-        path_ml = Path(resource_path)
+        path_ml = Path(str(resources.files("mqt.predictor"))) / "model" / "RandomForest"
         path_scalerk = path_ml / "scalerKCross.pkl"
         path_scaler = path_ml / "scaler.pkl"
         path_model = path_ml / "model.pkl"
