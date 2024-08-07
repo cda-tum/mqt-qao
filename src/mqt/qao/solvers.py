@@ -11,10 +11,10 @@ from typing import TYPE_CHECKING, Any
 
 import matplotlib.pyplot as plt
 import numpy as np
+import pkg_resources
 from docplex.mp.model import Model
 from dwave.samplers import SimulatedAnnealingSampler
 from dwave.system import DWaveSampler, EmbeddingComposite
-from importlib_resources import files
 from matplotlib import rc
 from qiskit.circuit import Parameter, QuantumCircuit
 from qiskit.circuit.library import TwoLocal
@@ -1109,7 +1109,11 @@ class Solver:
         x[0, 6] = elems_v[2]
         x[0, 7] = coeff_m
         x[0, 8] = coeff_v
-        path_ml = Path(str(files("mqt.qao"))) / "model" / "RandomForest"
+        # Access the file within the package
+        resource_path = pkg_resources.resource_filename("mqt.qao", "model/RandomForest")
+
+        # Convert the resource path to a Path object
+        path_ml = Path(resource_path)
         path_scalerk = path_ml / "scalerKCross.pkl"
         path_scaler = path_ml / "scaler.pkl"
         path_model = path_ml / "model.pkl"
