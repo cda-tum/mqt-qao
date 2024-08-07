@@ -1111,7 +1111,7 @@ class Solver:
         x[0, 8] = coeff_v
 
         # Convert the resource path to a Path object
-        path_ml = Path(str(resources.files("mqt.qao"))) / "model" / "RandomForest"
+        path_ml = resources.files("mqt.qao").joinpath("model/RandomForest")
         path_scalerk = path_ml / "scalerKCross.pkl"
         path_scaler = path_ml / "scaler.pkl"
         path_model = path_ml / "model.pkl"
