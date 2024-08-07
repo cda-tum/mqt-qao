@@ -1733,7 +1733,7 @@ def test_predict_solver_maxcut(problem_name: str) -> None:
                 coeff_precision=1.0,
             )
             with Path("./maxcutResults/" + problem_name + "_sol.txt").open("r", encoding="utf-8") as fsol:
-                reference_val = int(fsol.readline())
+                reference_val = float(fsol.readline())
                 if not isinstance(solution, bool) and solution is not None:
                     _all_satisfy, _each_satisfy = solution.check_constraint_optimal_solution()
                     assert solution.best_energy == reference_val

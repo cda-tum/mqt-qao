@@ -1,7 +1,6 @@
 # Import of the needed libraries
 from __future__ import annotations
 
-import importlib.resources
 import json
 import logging
 import pickle
@@ -15,6 +14,7 @@ import numpy as np
 from docplex.mp.model import Model
 from dwave.samplers import SimulatedAnnealingSampler
 from dwave.system import DWaveSampler, EmbeddingComposite
+from importlib_resources import files
 from matplotlib import rc
 from qiskit.circuit import Parameter, QuantumCircuit
 from qiskit.circuit.library import TwoLocal
@@ -1109,7 +1109,7 @@ class Solver:
         x[0, 6] = elems_v[2]
         x[0, 7] = coeff_m
         x[0, 8] = coeff_v
-        path_ml = Path(str(importlib.resources.files("mqt.qao"))) / "model" / "RandomForest"
+        path_ml = Path(str(files("mqt.qao"))) / "model" / "RandomForest"
         path_scalerk = path_ml / "scalerKCross.pkl"
         path_scaler = path_ml / "scaler.pkl"
         path_model = path_ml / "model.pkl"
