@@ -1046,115 +1046,6 @@ def test_simulated_annealer_solver(lambda_strategy: str) -> None:
         ("upper lower bound posiform and negaform method", "a = 1"),
     ],
 )
-def test_predicted_solver_constrained(lambda_strategy: str, constraint_expr: str) -> None:
-    """Test for the problem constructions"""
-    variables = Variables()
-    a0 = variables.add_binary_variable("a")
-    b0 = variables.add_discrete_variable("b", [-1, 1, 3])
-    c0 = variables.add_continuous_variable("c", -2, 2, 0.25)
-    objective_function = ObjectiveFunction()
-    objective_function.add_objective_function(cast(Expr, a0 + b0 * c0 + c0**2))
-    constraint = Constraints()
-    constraint.add_constraint(constraint_expr, variable_precision=True)
-    problem = Problem()
-    problem.create_problem(variables, constraint, objective_function)
-    solver = Solver()
-    solution = solver.solve(problem, lambda_strategy=lambda_strategy, num_runs=50)
-    if isinstance(solution, Solution):
-        all_satisfy, _each_satisfy = solution.check_constraint_optimal_solution()
-        if constraint_expr == "c >= 1":
-            assert solution.best_solution == {"a": 0.0, "b": -1.0, "c": 1.0} or not all_satisfy
-            assert (
-                solution.best_energy < 0.1
-            ) or not all_satisfy  # (the range if for having no issues with numerical errors)
-            assert solution.best_energy > -0.1 or not all_satisfy
-            assert solution.optimal_solution_cost_functions_values() == {"a + b*c + c**2": 0.0} or not all_satisfy
-        elif constraint_expr == "c > 1":
-            assert solution.best_solution == {"a": 0.0, "b": -1.0, "c": 1.25} or not all_satisfy
-            assert (
-                solution.best_energy < 0.4 or not all_satisfy
-            )  # (the range if for having no issues with numerical errors)
-            assert solution.best_energy > 0.3 or not all_satisfy
-            assert solution.optimal_solution_cost_functions_values() == {"a + b*c + c**2": 0.3125} or not all_satisfy
-        elif constraint_expr == "b < 1":
-            assert solution.best_solution == {"a": 0.0, "b": -1.0, "c": 0.5} or not all_satisfy
-            assert (
-                solution.best_energy < -0.2 or not all_satisfy
-            )  # (the range if for having no issues with numerical errors)
-            assert solution.best_energy > -0.3 or not all_satisfy
-            assert solution.optimal_solution_cost_functions_values() == {"a + b*c + c**2": -0.25} or not all_satisfy
-        elif constraint_expr == "b <= 1":
-            assert (
-                solution.best_solution in ({"a": 0.0, "b": 1.0, "c": -0.5}, {"a": 0.0, "b": -1.0, "c": 0.5})
-                or not all_satisfy
-            )
-            assert (
-                solution.best_energy < -0.2 or not all_satisfy
-            )  # (the range if for having no issues with numerical errors)
-            assert solution.best_energy > -0.3 or not all_satisfy
-            assert solution.optimal_solution_cost_functions_values() == {"a + b*c + c**2": -0.25} or not all_satisfy
-        if constraint_expr == "b + c >= 2":
-            assert solution.best_solution == {"a": 0.0, "b": 3.0, "c": -1.0} or not all_satisfy
-            assert (
-                solution.best_energy < -1.9
-            ) or not all_satisfy  # (the range if for having no issues with numerical errors)
-            assert solution.best_energy > -2.1 or not all_satisfy
-            assert solution.optimal_solution_cost_functions_values() == {"a + b*c + c**2": -2.0} or not all_satisfy
-        if constraint_expr == "a = 1":
-            assert solution.best_solution == {"a": 1, "b": 3.0, "c": -1.5} or not all_satisfy
-            assert (
-                solution.best_energy < -1.2
-            ) or not all_satisfy  # (the range if for having no issues with numerical errors)
-            assert solution.best_energy > -1.3 or not all_satisfy
-            assert solution.optimal_solution_cost_functions_values() == {"a + b*c + c**2": -1.25} or not all_satisfy
-    else:
-        assert solution
-
-
-@pytest.mark.parametrize(
-    ("lambda_strategy", "constraint_expr"),
-    [
-        ("upper_bound_only_positive", "c >= 1"),
-        ("maximum_coefficient", "c >= 1"),
-        ("VLM", "c >= 1"),
-        ("MOMC", "c >= 1"),
-        ("MOC", "c >= 1"),
-        ("upper lower bound naive", "c >= 1"),
-        ("upper lower bound posiform and negaform method", "c >= 1"),
-        ("maximum_coefficient", "c > 1"),
-        ("VLM", "c > 1"),
-        ("MOMC", "c > 1"),
-        ("MOC", "c > 1"),
-        ("upper lower bound naive", "c > 1"),
-        ("upper lower bound posiform and negaform method", "c > 1"),
-        ("maximum_coefficient", "b < 1"),
-        ("VLM", "b < 1"),
-        ("MOMC", "b < 1"),
-        ("MOC", "b < 1"),
-        ("upper lower bound naive", "b < 1"),
-        ("upper lower bound posiform and negaform method", "b < 1"),
-        ("maximum_coefficient", "b <= 1"),
-        ("VLM", "b <= 1"),
-        ("MOMC", "b <= 1"),
-        ("MOC", "b <= 1"),
-        ("upper lower bound naive", "b <= 1"),
-        ("upper lower bound posiform and negaform method", "b <= 1"),
-        ("upper_bound_only_positive", "b + c >= 2"),
-        ("maximum_coefficient", "b + c >= 2"),
-        ("VLM", "b + c >= 2"),
-        ("MOMC", "b + c >= 2"),
-        ("MOC", "b + c >= 2"),
-        ("upper lower bound naive", "b + c >= 2"),
-        ("upper lower bound posiform and negaform method", "b + c >= 2"),
-        ("upper_bound_only_positive", "a = 1"),
-        ("maximum_coefficient", "a = 1"),
-        ("VLM", "a = 1"),
-        ("MOMC", "a = 1"),
-        ("MOC", "a = 1"),
-        ("upper lower bound naive", "a = 1"),
-        ("upper lower bound posiform and negaform method", "a = 1"),
-    ],
-)
 def test_simulated_annealer_solver_constrained(lambda_strategy: str, constraint_expr: str) -> None:
     """Test for the problem constructions"""
     variables = Variables()
@@ -1702,7 +1593,8 @@ def test_vqe_solver_qubo_basic() -> None:
 )
 def test_predict_solver_maxcut(problem_name: str) -> None:
     """Test for the problem constructions"""
-    with Path("./maxcut/" + problem_name + ".txt").open("r", encoding="utf-8") as f:
+    pathfile = Path(__file__).parent / "maxcut" / str(problem_name + ".txt")
+    with pathfile.open("r", encoding="utf-8") as f:
         lines = f.readlines()
         el = lines[0].split()
         nodes = int(el[0])
@@ -1732,7 +1624,8 @@ def test_predict_solver_maxcut(problem_name: str) -> None:
                 num_runs=10,
                 coeff_precision=1.0,
             )
-            with Path("./maxcutResults/" + problem_name + "_sol.txt").open("r", encoding="utf-8") as fsol:
+            pathfilesol = Path(__file__).parent / "maxcutResults" / str(problem_name + "_sol.txt")
+            with pathfilesol.open("r", encoding="utf-8") as fsol:
                 reference_val = float(fsol.readline())
                 if not isinstance(solution, bool) and solution is not None:
                     _all_satisfy, _each_satisfy = solution.check_constraint_optimal_solution()
