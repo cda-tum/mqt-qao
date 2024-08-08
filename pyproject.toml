@@ -2,8 +2,7 @@
 requires = [
     "setuptools>=66.1",
     "setuptools_scm>=8.1",
-    "cppyy>=2.7.0",
-    "wheel>=0.37",
+    "cppy>=2.7.0",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -135,7 +134,6 @@ module = [
     "matplotlib.*",
     "docplex.*",
     "dimod.*",
-    "dwave.*",
     "scikit-learn.*",
 ]
 ignore_missing_imports = true
