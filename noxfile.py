@@ -28,7 +28,7 @@ BUILD_REQUIREMENTS = [
     "kiwisolver>=1.3.2",
     "markupsafe>=2.0.1",
     "numpy>=2.0.0",
-    "setuptools_dso>=0.1.0",
+    "setuptools_dso>=2.10",
 ]
 
 if os.environ.get("CI", None):
