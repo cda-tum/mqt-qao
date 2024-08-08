@@ -2,7 +2,6 @@
 requires = [
     "setuptools>=66.1",
     "setuptools_scm>=8.1",
-    "cppy>=2.7.0",
 ]
 build-backend = "setuptools.build_meta"
 
