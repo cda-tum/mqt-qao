@@ -25,7 +25,7 @@ BUILD_REQUIREMENTS = [
     "cython>=3.0",
     "cppy>=1.1.0",
     "kiwisolver>=1.3.2",
-    "dimod>=0.12.16",
+    "dimod>=0.12",
     "numpy>=2.0.0",
     "setuptools_dso>=0.1.0",
 ]
