@@ -24,6 +24,7 @@ BUILD_REQUIREMENTS = [
     "cython>=3.0",
     "cppy>=1.1.0",
     "kiwisolver>=1.3.2",
+    "dimod>=0.10.0",
 ]
 
 if os.environ.get("CI", None):
