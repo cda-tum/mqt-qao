@@ -25,7 +25,7 @@ BUILD_REQUIREMENTS = [
     "cppy>=1.1.0",
     "kiwisolver>=1.3.2",
     "dimod>=0.1.1",
-    "numpy>=1.26.0,<2.0.0",
+    "numpy>=2.0.0",
 ]
 
 if os.environ.get("CI", None):
