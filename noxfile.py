@@ -22,7 +22,8 @@ BUILD_REQUIREMENTS = [
     "setuptools_scm>=8.1",
     "wheel>=0.40",
     "cython>=3.0",
-    "cppy",
+    "cppy>=1.1.0",
+    "kiwisolver>=1.3.2",
 ]
 
 if os.environ.get("CI", None):
