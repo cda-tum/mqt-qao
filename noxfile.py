@@ -15,13 +15,20 @@ if TYPE_CHECKING:
 nox.needs_version = ">=2024.3.2"
 nox.options.default_venv_backend = "uv|virtualenv"
 
-PYTHON_ALL_VERSIONS = ["3.9", "3.10", "3.11", "3.12"]
+PYTHON_ALL_VERSIONS = ["3.9", "3.10", "3.11", "3.12", "3.13"]
 
 BUILD_REQUIREMENTS = [
     "setuptools>=66.1",
     "setuptools_scm>=8.1",
     "wheel>=0.40",
-    "cython>=3.0",
+    "scikit-build>=0.11.1",
+    "cython>=3.0.11",
+    "cppy>=1.1.0",
+    "dimod>=0.12.6",
+    "kiwisolver>=1.3.2",
+    "markupsafe>=2.0.1",
+    "numpy>=2.0.0",
+    "setuptools_dso>=2.10",
 ]
 
 if os.environ.get("CI", None):
