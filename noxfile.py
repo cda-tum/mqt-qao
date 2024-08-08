@@ -21,11 +21,13 @@ BUILD_REQUIREMENTS = [
     "setuptools>=66.1",
     "setuptools_scm>=8.1",
     "wheel>=0.40",
+    "scikit-build>=0.11.1",
     "cython>=3.0",
     "cppy>=1.1.0",
     "kiwisolver>=1.3.2",
-    "dimod>=0.12",
+    "dimod>=0.12.16",
     "numpy>=2.0.0",
+    "setuptools_dso>=0.1.0",
 ]
 
 if os.environ.get("CI", None):
