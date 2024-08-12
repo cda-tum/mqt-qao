@@ -21,7 +21,7 @@ BUILD_REQUIREMENTS = [
     "setuptools>=66.1",
     "setuptools_scm>=8.1",
     "wheel>=0.40",
-    "cython>=3.0.11",
+    "cython>=3.0",
 ]
 
 if os.environ.get("CI", None):
