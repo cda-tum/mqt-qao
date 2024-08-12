@@ -221,3 +221,24 @@ isort.required-imports = ["from __future__ import annotations"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+
+[tool.typos]
+default.extend-ignore-re = [
+    "(?Rm)^.*(#|//)\\s*spellchecker:disable-line$",  # ignore line
+    "(?s)(#|//)\\s*spellchecker:off.*?\\n\\s*(#|//)\\s*spellchecker:on" # ignore block
+]
+default.extend-ignore-identifiers-re = [
+    "BasicAer",
+    "qiskit_aer",
+    "AerSimulator",
+]
+[tool.typos.default.extend-words]
+wille = "wille"
+
+
+[tool.repo-review]
+ignore = [
+    "PC160", # "Uses codespell" -> switched to https://github.com/crate-ci/typos
+    "PC180", # "Uses prettier" -> switched to different prettier-mirror that is not recognized by the check
+]
