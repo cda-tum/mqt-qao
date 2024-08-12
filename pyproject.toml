@@ -47,7 +47,6 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
     "Intended Audience :: Science/Research",
     "Natural Language :: English",
     "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
@@ -209,8 +208,6 @@ isort.required-imports = ["from __future__ import annotations"]
 "typing.Self".msg = "Use scikit_build_core._compat.typing.Self instead."
 "typing_extensions.Self".msg = "Use scikit_build_core._compat.typing.Self instead."
 "typing.assert_never".msg = "Use scikit_build_core._compat.typing.assert_never instead."
-#"importlib.resources".msg = "Use scikit_build_core._compat.importlib.resources instead."
-#"importlib_resources".msg = "Use scikit_build_core._compat.importlib.resources instead."
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["T20", "ANN"]
