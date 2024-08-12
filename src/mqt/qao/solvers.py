@@ -79,7 +79,7 @@ class Solver:
         Keyword arguments:
         problem -- which is the problem to solve
         auto_setting -- bool it is a flag for choosing the automatic setting of the solver parameters (False by defaults)
-        beta_range -- int is the range of values assumed by the simulated annealing beta parameter (the temperature), if None the solver exploites its default option.
+        beta_range -- int is the range of values assumed by the simulated annealing beta parameter (the temperature), if None the solver exploits its default option.
         num_reads -- int is the number of solver execution, 100 by default
         annealing_time -- int is the number of simulated annealing iterations
         num_sweeps_per_beta -- int define the number of iterations for which is value of beta is maintained
