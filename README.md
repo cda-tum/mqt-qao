@@ -75,12 +75,12 @@ In case you are using the MQT Quantum Auto Optimizer in your work, we would be t
 	ARCHIVEPREXIX = {arxiv},
 }
 
-@INPROCEEDINGS{volpe2024towards,
+@INPROCEEDINGS{volpe2024predictive,
 	AUTHOR        = {D. Volpe and N. Quetschlich and M. Graziano and G. Turvani and R. Wille},
 	TITLE         = {{A Predictive Approach for Selecting the Best Quantum Solver for an Optimization Problem}},
 	YEAR          = {2024},
 	BOOKTITLE     = {IEEE International Conference on Quantum Computing and Engineering (QCE)},
-	EPRINT        = {},
+	EPRINT        = {2408.03613},
 	PRIMARYCLASS  = {quant-ph},
 	ARCHIVEPREXIX = {arxiv},
 }
