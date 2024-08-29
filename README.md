@@ -60,6 +60,32 @@ solution = Solver().solve_Dwave_quantum_annealer(prb, token=token)
 
 **Detailed documentation and examples are available at [ReadTheDocs](https://mqt.readthedocs.io/projects/qao).**
 
+## References
+
+In case you are using the MQT Quantum Auto Optimizer in your work, we would be thankful if you referred to it by citing the following publications:
+
+```bibtex
+@INPROCEEDINGS{volpe2024towards,
+	AUTHOR        = {D. Volpe and N. Quetschlich and M. Graziano and G. Turvani and R. Wille},
+	TITLE         = {{Towards an Automatic Framework for Solving Optimization Problems with Quantum Computers}},
+	YEAR          = {2024},
+	BOOKTITLE     = {IEEE International Conference on Quantum Software (QSW)},
+	EPRINT        = {2406.12840},
+	PRIMARYCLASS  = {quant-ph},
+	ARCHIVEPREXIX = {arxiv},
+}
+
+@INPROCEEDINGS{volpe2024predictive,
+	AUTHOR        = {D. Volpe and N. Quetschlich and M. Graziano and G. Turvani and R. Wille},
+	TITLE         = {{A Predictive Approach for Selecting the Best Quantum Solver for an Optimization Problem}},
+	YEAR          = {2024},
+	BOOKTITLE     = {IEEE International Conference on Quantum Computing and Engineering (QCE)},
+	EPRINT        = {2408.03613},
+	PRIMARYCLASS  = {quant-ph},
+	ARCHIVEPREXIX = {arxiv},
+}
+```
+
 ## Acknowledgements
 
 The Munich Quantum Toolkit has been supported by the European
