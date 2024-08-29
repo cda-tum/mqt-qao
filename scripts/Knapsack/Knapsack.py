@@ -6,10 +6,10 @@ from pathlib import Path
 from typing import cast
 
 import numpy as np
+from sympy import Expr
 
 # for managing symbols
 from mqt.qao import Constraints, ObjectiveFunction, Problem, Solver, Variables
-from sympy import Expr
 
 lambdas_method = [
     "upper_bound_only_positive",
