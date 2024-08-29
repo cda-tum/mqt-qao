@@ -71,7 +71,7 @@ repos:
     rev: v1.10.0
     hooks:
       - id: mypy
-        files: ^(src/mqt|tests)
+        files: ^(mqt|tests)
         args: []
         additional_dependencies:
           - pytest
