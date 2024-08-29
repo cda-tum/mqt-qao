@@ -6,16 +6,15 @@ from typing import cast
 
 import numpy as np
 import pytest
-
-# for managing symbols
-from qubovert import PUBO, boolean_var
-from sympy import Expr
-
 from mqt.qao.constraints import Constraints
 from mqt.qao.objectivefunction import ObjectiveFunction
 from mqt.qao.problem import Problem
 from mqt.qao.solvers import Solution, Solver
 from mqt.qao.variables import Variables
+
+# for managing symbols
+from qubovert import PUBO, boolean_var
+from sympy import Expr
 
 
 def test_binary_only() -> None:

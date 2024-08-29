@@ -4,12 +4,12 @@ from typing import cast
 
 import numpy as np
 import pandas as pd
-from sklearn.decomposition import PCA
-from sklearn.utils import shuffle
-from sympy import Expr
 
 # for managing symbols
 from mqt.qao import Constraints, ObjectiveFunction, Problem, Solver, Variables
+from sklearn.decomposition import PCA
+from sklearn.utils import shuffle
+from sympy import Expr
 
 df = pd.read_csv("iris_csv.csv")
 df = shuffle(df)
