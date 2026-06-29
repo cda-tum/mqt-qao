@@ -116,7 +116,7 @@ def test_sat_solving_basic():
     input_data: list[Any] = [["a", "!b"], ["b", "c"], ["!a", "d"]]
     solution = KarpNumber.sat(input_data, solve=True)
     assert isinstance(solution, dict), "Expected a dictionary as the solution"
-    assert all(isinstance(value, float) for key, value in solution.items()), (
+    assert all(isinstance(value, float) for value in solution.values()), (
         "Expected solution to contain variable names as keys and floats as values"
     )
 
@@ -134,7 +134,7 @@ def test_three_sat_solving_basic():
     solution = KarpNumber.three_sat(input_data, solve=True)
 
     assert isinstance(solution, dict), "Expected a dictionary as the solution"
-    assert all(isinstance(value, float) for key, value in solution.items()), (
+    assert all(isinstance(value, float) for value in solution.values()), (
         "Expected solution to contain variable names as keys and floats as values"
     )
 
