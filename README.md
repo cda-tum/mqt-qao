@@ -1,4 +1,8 @@
-**⚠️ MQT QAO is no longer being developed and has been archived as off July 2026. ⚠️**
+**⚠️ Warning ⚠️**
+
+**MQT QAO is no longer being developed and has been archived as of July 2026.**
+
+---
 
 <p align="center">
   <a href="https://mqt.readthedocs.io">
