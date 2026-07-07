@@ -1341,7 +1341,7 @@ class Constraints:
         return ret
 
     def _grt_constraint_check(self, constraint: str, variables: Variables, solution: dict[str, Any]) -> bool:
-        """function for checking the greter constraint penalty function.
+        """function for checking the greater constraint penalty function.
 
         Keyword arguments:
         constraint -- string containing the constraint expression

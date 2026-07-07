@@ -579,12 +579,12 @@ class Solver:
             beta = Parameter("β")
             var_num = len(self.qubo.variables)
             mixer = QuantumCircuit(var_num)
-            for _idx in range(var_num):
-                mixer.rx(2 * beta, _idx)
+            for idx in range(var_num):
+                mixer.rx(2 * beta, idx)
 
             initial_state = QuantumCircuit(var_num)
-            for _idx in range(var_num):
-                initial_state.h(_idx)
+            for idx in range(var_num):
+                initial_state.h(idx)
 
         if optimizer is None:
             optimizer = COBYLA()
@@ -868,12 +868,12 @@ class Solver:
             beta = Parameter("β")
             var_num = len(self.qubo.variables)
             mixer = QuantumCircuit(var_num)
-            for _idx in range(var_num):
-                mixer.rx(2 * beta, _idx)
+            for idx in range(var_num):
+                mixer.rx(2 * beta, idx)
 
             initial_state = QuantumCircuit(var_num)
-            for _idx in range(var_num):
-                initial_state.h(_idx)
+            for idx in range(var_num):
+                initial_state.h(idx)
             callback = None
             initial_point = None
             aggregation = None
@@ -1692,5 +1692,5 @@ class Solution:
             data["lambdas"] = self.problem.lambdas
 
         file_path = Path(filename + ".json")
-        with file_path.open("w") as outfile:
+        with file_path.open("w", encoding="utf-8") as outfile:
             json.dump(data, outfile)

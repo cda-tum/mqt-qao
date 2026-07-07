@@ -482,64 +482,60 @@ class KarpSets:
 
             sets_list = [(1, list(elements)) for elements in elements_sets]
 
-        try:
-            if not solve:
-                return KarpSets.set_cover(sets_list, solve=False)
+        if not solve:
+            return KarpSets.set_cover(sets_list, solve=False)
 
-            problem = KarpSets.set_cover(sets_list, solve=False)
-            solver = Solver()
+        problem = KarpSets.set_cover(sets_list, solve=False)
+        solver = Solver()
 
-            if solver_method is None:
-                solver_method = solver.solve_simulated_annealing
+        if solver_method is None:
+            solver_method = solver.solve_simulated_annealing
 
-            if solver_params is not None:
-                solver_method = partial(solver_method, **solver_params)
+        if solver_params is not None:
+            solver_method = partial(solver_method, **solver_params)
 
-            if isinstance(problem, Problem):
-                solution = solver.solve_simulated_annealing(problem)
-            else:
-                msg = "Expected a Problem instance, got a different type."
+        if isinstance(problem, Problem):
+            solution = solver.solve_simulated_annealing(problem)
+        else:
+            msg = "Expected a Problem instance, got a different type."
+            raise TypeError(msg)
+        if solution is None or not hasattr(solution, "best_solution"):
+            msg = "Solver did not return a valid solution."
+            raise ValueError(msg)
+        solution_vars = solution.best_solution
+
+        solution_set = [key for key, value in solution_vars.items() if key.startswith("set_") and value == 1.0]
+        solution_set = [int(item.split("_")[1]) + 1 for item in solution_set]
+        mapped_array = [element_index_map.get(item) for item in solution_set]
+
+        if read_solution == "print":
+            if not isinstance(input_data, list) or not isinstance(solution_set, list):
+                msg = f"Expected input_data to be a list, but got {type(input_data).__name__}"
                 raise TypeError(msg)
-            if solution is None or not hasattr(solution, "best_solution"):
-                msg = "Solver did not return a valid solution."
-                raise ValueError(msg)
-            solution_vars = solution.best_solution
 
-            solution_set = [key for key, value in solution_vars.items() if key.startswith("set_") and value == 1.0]
-            solution_set = [int(item.split("_")[1]) + 1 for item in solution_set]
-            mapped_array = [element_index_map.get(item) for item in solution_set]
+            KarpSets.print_solution(
+                "Hitting Set Solution: ",
+                file_name,
+                f"H = {mapped_array}",
+                "Valid Solution"
+                if KarpSets.check_hitting_set_solution(input_data, solution_set)
+                else "Invalid Solution",
+            )
+        elif read_solution == "file":
+            if not isinstance(input_data, list) or not isinstance(solution_set, list):
+                msg = f"Expected input_data to be a list, but got {type(input_data).__name__}"
+                raise TypeError(msg)
+            KarpSets.save_solution(
+                "Hitting Set Solution: ",
+                file_name,
+                f"H = {mapped_array}",
+                summary="Valid Solution"
+                if KarpSets.check_hitting_set_solution(input_data, solution_set)
+                else "Invalid Solution",
+                txt_outputname="hitting_set_solution.txt",
+            )
 
-            if read_solution == "print":
-                if not isinstance(input_data, list) or not isinstance(solution_set, list):
-                    msg = f"Expected input_data to be a list, but got {type(input_data).__name__}"
-                    raise TypeError(msg)
-
-                KarpSets.print_solution(
-                    "Hitting Set Solution: ",
-                    file_name,
-                    f"H = {mapped_array}",
-                    "Valid Solution"
-                    if KarpSets.check_hitting_set_solution(input_data, solution_set)
-                    else "Invalid Solution",
-                )
-            elif read_solution == "file":
-                if not isinstance(input_data, list) or not isinstance(solution_set, list):
-                    msg = f"Expected input_data to be a list, but got {type(input_data).__name__}"
-                    raise TypeError(msg)
-                KarpSets.save_solution(
-                    "Hitting Set Solution: ",
-                    file_name,
-                    f"H = {mapped_array}",
-                    summary="Valid Solution"
-                    if KarpSets.check_hitting_set_solution(input_data, solution_set)
-                    else "Invalid Solution",
-                    txt_outputname="hitting_set_solution.txt",
-                )
-
-            return solution_set
-
-        finally:
-            pass
+        return solution_set
 
     @staticmethod
     def check_hitting_set_solution(sets: list[tuple[int, list[int]]], solution: list[int]) -> dict[Any, Any]:
@@ -651,85 +647,81 @@ class KarpSets:
 
         (f"_{file_name.replace('.txt', '')}", file_name) if file_name else ("", "")
 
-        try:
-            if not solve:
-                return KarpSets.set_packing(set_packing_input, solve=False)
+        if not solve:
+            return KarpSets.set_packing(set_packing_input, solve=False)
 
-            problem = KarpSets.set_packing(set_packing_input, solve=False)
-            solver = Solver()
+        problem = KarpSets.set_packing(set_packing_input, solve=False)
+        solver = Solver()
 
-            if solver_method is None:
-                solver_method = solver.solve_simulated_annealing
+        if solver_method is None:
+            solver_method = solver.solve_simulated_annealing
 
-            if solver_params is not None:
-                solver_method = partial(solver_method, **solver_params)
+        if solver_params is not None:
+            solver_method = partial(solver_method, **solver_params)
 
-            if isinstance(problem, Problem):
-                solution = solver.solve_simulated_annealing(problem)
-            else:
-                msg = "Expected a Problem instance, got a different type."
-                raise TypeError(msg)
+        if isinstance(problem, Problem):
+            solution = solver.solve_simulated_annealing(problem)
+        else:
+            msg = "Expected a Problem instance, got a different type."
+            raise TypeError(msg)
 
-            if solution is None or not hasattr(solution, "best_solution"):
-                msg = "Solver did not return a valid solution."
-                raise ValueError(msg)
+        if solution is None or not hasattr(solution, "best_solution"):
+            msg = "Solver did not return a valid solution."
+            raise ValueError(msg)
 
-            solution_vars = solution.best_solution
+        solution_vars = solution.best_solution
 
-            solution_set = [key for key, value in solution_vars.items() if key.startswith("set_") and value == 1.0]
-            solution_set = [int(item.split("_")[1]) for item in solution_set]
-            final_solution = [set_packing_input[i][1] for i in solution_set if isinstance(i, int)]
+        solution_set = [key for key, value in solution_vars.items() if key.startswith("set_") and value == 1.0]
+        solution_set = [int(item.split("_")[1]) for item in solution_set]
+        final_solution = [set_packing_input[i][1] for i in solution_set if isinstance(i, int)]
 
-            formatted_strings = []
+        formatted_strings = []
 
-            for index, sub_array in enumerate(final_solution, start=1):
-                tuple_representation = tuple(sub_array)
-                formatted_strings.append(f"M{index} = {tuple_representation}")
+        for index, sub_array in enumerate(final_solution, start=1):
+            tuple_representation = tuple(sub_array)
+            formatted_strings.append(f"M{index} = {tuple_representation}")
 
-            result_string = "\n".join(formatted_strings)
+        result_string = "\n".join(formatted_strings)
 
-            if visualize and isinstance(input_data, nx.Graph):
-                plt.figure()
+        if visualize and isinstance(input_data, nx.Graph):
+            plt.figure()
 
-                pos = {}
-                for i, node in enumerate(x):
-                    pos[node] = (0, -i)
-                for i, node in enumerate(y):
-                    pos[node] = (1, -i)
-                for i, node in enumerate(z):
-                    pos[node] = (2, -i)
+            pos = {}
+            for i, node in enumerate(x):
+                pos[node] = (0, -i)
+            for i, node in enumerate(y):
+                pos[node] = (1, -i)
+            for i, node in enumerate(z):
+                pos[node] = (2, -i)
 
-                nx.draw(input_data, pos, with_labels=True, edge_color="black", node_size=700, node_color="lightblue")
+            nx.draw(input_data, pos, with_labels=True, edge_color="black", node_size=700, node_color="lightblue")
 
-                solution_edges = [(triple[0], triple[1]) for triple in final_solution] + [
-                    (triple[1], triple[2]) for triple in final_solution
-                ]
-                nx.draw_networkx_edges(input_data, pos, edgelist=solution_edges, edge_color="blue", width=2)
+            solution_edges = [(triple[0], triple[1]) for triple in final_solution] + [
+                (triple[1], triple[2]) for triple in final_solution
+            ]
+            nx.draw_networkx_edges(input_data, pos, edgelist=solution_edges, edge_color="blue", width=2)
 
-                plt.show()
+            plt.show()
 
-            if read_solution == "print":
-                KarpSets.print_solution(
-                    "3D Matching Solution: ",
-                    file_name,
-                    result_string,
-                    KarpSets.convert_dict_to_string(KarpSets.check_three_d_matching(x, y, z, final_solution)),
-                )
-            elif read_solution == "file":
-                KarpSets.save_solution(
-                    "3D Matching Solution: ",
-                    file_name,
-                    result_string,
-                    summary=KarpSets.convert_dict_to_string(KarpSets.check_three_d_matching(x, y, z, final_solution)),
-                    txt_outputname=file_name.replace(".txt", "") + "_hitting_set_solution" + ".txt"
-                    if isinstance(input_data, str)
-                    else "hitting_set_solution.txt",
-                )
+        if read_solution == "print":
+            KarpSets.print_solution(
+                "3D Matching Solution: ",
+                file_name,
+                result_string,
+                KarpSets.convert_dict_to_string(KarpSets.check_three_d_matching(x, y, z, final_solution)),
+            )
+        elif read_solution == "file":
+            KarpSets.save_solution(
+                "3D Matching Solution: ",
+                file_name,
+                result_string,
+                summary=KarpSets.convert_dict_to_string(KarpSets.check_three_d_matching(x, y, z, final_solution)),
+                txt_outputname=file_name.replace(".txt", "") + "_hitting_set_solution" + ".txt"
+                if isinstance(input_data, str)
+                else "hitting_set_solution.txt",
+            )
 
-            return final_solution
-
-        finally:
-            pass
+        return final_solution
 
     @staticmethod
     def check_three_d_matching(
